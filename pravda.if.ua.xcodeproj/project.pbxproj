@@ -18,6 +18,7 @@
 		B765D53B172E5C0A00973238 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B765D53A172E5C0A00973238 /* Default-568h@2x.png */; };
 		B765D53E172E5C0A00973238 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B765D53C172E5C0A00973238 /* MainStoryboard.storyboard */; };
 		B765D541172E5C0A00973238 /* pravdaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B765D540172E5C0A00973238 /* pravdaViewController.m */; };
+		B765D548172E669C00973238 /* pravda.png in Resources */ = {isa = PBXBuildFile; fileRef = B765D547172E669C00973238 /* pravda.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		B765D53D172E5C0A00973238 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B765D53F172E5C0A00973238 /* pravdaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pravdaViewController.h; sourceTree = "<group>"; };
 		B765D540172E5C0A00973238 /* pravdaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pravdaViewController.m; sourceTree = "<group>"; };
+		B765D547172E669C00973238 /* pravda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pravda.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				B765D52D172E5C0A00973238 /* InfoPlist.strings */,
 				B765D530172E5C0A00973238 /* main.m */,
 				B765D532172E5C0A00973238 /* pravda.if.ua-Prefix.pch */,
+				B765D547172E669C00973238 /* pravda.png */,
 				B765D536172E5C0A00973238 /* Default.png */,
 				B765D538172E5C0A00973238 /* Default@2x.png */,
 				B765D53A172E5C0A00973238 /* Default-568h@2x.png */,
@@ -164,6 +167,7 @@
 				B765D539172E5C0A00973238 /* Default@2x.png in Resources */,
 				B765D53B172E5C0A00973238 /* Default-568h@2x.png in Resources */,
 				B765D53E172E5C0A00973238 /* MainStoryboard.storyboard in Resources */,
+				B765D548172E669C00973238 /* pravda.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
