@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71A840B1730036D00C50490 /* rssItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A840A1730036D00C50490 /* rssItem.m */; };
 		B765D525172E5C0A00973238 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B765D524172E5C0A00973238 /* UIKit.framework */; };
 		B765D527172E5C0A00973238 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B765D526172E5C0A00973238 /* Foundation.framework */; };
 		B765D529172E5C0A00973238 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B765D528172E5C0A00973238 /* CoreGraphics.framework */; };
@@ -19,9 +20,19 @@
 		B765D53E172E5C0A00973238 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B765D53C172E5C0A00973238 /* MainStoryboard.storyboard */; };
 		B765D541172E5C0A00973238 /* pravdaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B765D540172E5C0A00973238 /* pravdaViewController.m */; };
 		B765D548172E669C00973238 /* pravda.png in Resources */ = {isa = PBXBuildFile; fileRef = B765D547172E669C00973238 /* pravda.png */; };
+		B765D54B172E6D7200973238 /* MyCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B765D54A172E6D7200973238 /* MyCustomCell.m */; };
+		B76C95C6173006A9003B5A3A /* RSSFetchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A840D1730053100C50490 /* RSSFetchOperation.m */; };
+		B7ABB5DB172E7AA300B9EA5A /* pravda_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ABB5DA172E7AA300B9EA5A /* pravda_icon.png */; };
+		B7ABB5DD172E7AA800B9EA5A /* pravda_icon_ritna.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ABB5DC172E7AA800B9EA5A /* pravda_icon_ritna.png */; };
+		D90B1FFF172EFE30000A1466 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D90B1FFE172EFE30000A1466 /* image.jpg */; };
+		D90B2004172F0319000A1466 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90B2003172F0319000A1466 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B71A84091730036D00C50490 /* rssItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rssItem.h; sourceTree = "<group>"; };
+		B71A840A1730036D00C50490 /* rssItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rssItem.m; sourceTree = "<group>"; };
+		B71A840C1730053100C50490 /* RSSFetchOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSFetchOperation.h; sourceTree = "<group>"; };
+		B71A840D1730053100C50490 /* RSSFetchOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSFetchOperation.m; sourceTree = "<group>"; };
 		B765D521172E5C0A00973238 /* pravda.if.ua.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pravda.if.ua.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B765D524172E5C0A00973238 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B765D526172E5C0A00973238 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -39,6 +50,13 @@
 		B765D53F172E5C0A00973238 /* pravdaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pravdaViewController.h; sourceTree = "<group>"; };
 		B765D540172E5C0A00973238 /* pravdaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pravdaViewController.m; sourceTree = "<group>"; };
 		B765D547172E669C00973238 /* pravda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pravda.png; sourceTree = "<group>"; };
+		B765D549172E6D7200973238 /* MyCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCustomCell.h; sourceTree = "<group>"; };
+		B765D54A172E6D7200973238 /* MyCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomCell.m; sourceTree = "<group>"; };
+		B7ABB5DA172E7AA300B9EA5A /* pravda_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pravda_icon.png; path = ../pravda_icon.png; sourceTree = "<group>"; };
+		B7ABB5DC172E7AA800B9EA5A /* pravda_icon_ritna.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pravda_icon_ritna.png; path = ../pravda_icon_ritna.png; sourceTree = "<group>"; };
+		D90B1FFE172EFE30000A1466 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
+		D90B2002172F0319000A1466 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		D90B2003172F0319000A1466 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +73,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B71A84081730033100C50490 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				B765D547172E669C00973238 /* pravda.png */,
+				B7ABB5DC172E7AA800B9EA5A /* pravda_icon_ritna.png */,
+				D90B1FFE172EFE30000A1466 /* image.jpg */,
+				B765D536172E5C0A00973238 /* Default.png */,
+				B765D538172E5C0A00973238 /* Default@2x.png */,
+				B765D53A172E5C0A00973238 /* Default-568h@2x.png */,
+				B7ABB5DA172E7AA300B9EA5A /* pravda_icon.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		B765D518172E5C0A00973238 = {
 			isa = PBXGroup;
 			children = (
@@ -85,12 +117,17 @@
 		B765D52A172E5C0A00973238 /* pravda.if.ua */ = {
 			isa = PBXGroup;
 			children = (
-				B765D533172E5C0A00973238 /* pravdaAppDelegate.h */,
-				B765D534172E5C0A00973238 /* pravdaAppDelegate.m */,
-				B765D53C172E5C0A00973238 /* MainStoryboard.storyboard */,
 				B765D53F172E5C0A00973238 /* pravdaViewController.h */,
 				B765D540172E5C0A00973238 /* pravdaViewController.m */,
+				B765D549172E6D7200973238 /* MyCustomCell.h */,
+				B765D54A172E6D7200973238 /* MyCustomCell.m */,
+				D90B2002172F0319000A1466 /* DetailViewController.h */,
+				D90B2003172F0319000A1466 /* DetailViewController.m */,
 				B765D52B172E5C0A00973238 /* Supporting Files */,
+				B71A84091730036D00C50490 /* rssItem.h */,
+				B71A840A1730036D00C50490 /* rssItem.m */,
+				B71A840C1730053100C50490 /* RSSFetchOperation.h */,
+				B71A840D1730053100C50490 /* RSSFetchOperation.m */,
 			);
 			path = pravda.if.ua;
 			sourceTree = "<group>";
@@ -98,14 +135,14 @@
 		B765D52B172E5C0A00973238 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B71A84081730033100C50490 /* images */,
+				B765D53C172E5C0A00973238 /* MainStoryboard.storyboard */,
+				B765D533172E5C0A00973238 /* pravdaAppDelegate.h */,
+				B765D534172E5C0A00973238 /* pravdaAppDelegate.m */,
 				B765D52C172E5C0A00973238 /* pravda.if.ua-Info.plist */,
 				B765D52D172E5C0A00973238 /* InfoPlist.strings */,
 				B765D530172E5C0A00973238 /* main.m */,
 				B765D532172E5C0A00973238 /* pravda.if.ua-Prefix.pch */,
-				B765D547172E669C00973238 /* pravda.png */,
-				B765D536172E5C0A00973238 /* Default.png */,
-				B765D538172E5C0A00973238 /* Default@2x.png */,
-				B765D53A172E5C0A00973238 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -168,6 +205,9 @@
 				B765D53B172E5C0A00973238 /* Default-568h@2x.png in Resources */,
 				B765D53E172E5C0A00973238 /* MainStoryboard.storyboard in Resources */,
 				B765D548172E669C00973238 /* pravda.png in Resources */,
+				B7ABB5DB172E7AA300B9EA5A /* pravda_icon.png in Resources */,
+				B7ABB5DD172E7AA800B9EA5A /* pravda_icon_ritna.png in Resources */,
+				D90B1FFF172EFE30000A1466 /* image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +221,10 @@
 				B765D531172E5C0A00973238 /* main.m in Sources */,
 				B765D535172E5C0A00973238 /* pravdaAppDelegate.m in Sources */,
 				B765D541172E5C0A00973238 /* pravdaViewController.m in Sources */,
+				B765D54B172E6D7200973238 /* MyCustomCell.m in Sources */,
+				D90B2004172F0319000A1466 /* DetailViewController.m in Sources */,
+				B71A840B1730036D00C50490 /* rssItem.m in Sources */,
+				B76C95C6173006A9003B5A3A /* RSSFetchOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +347,7 @@
 				B765D546172E5C0A00973238 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
