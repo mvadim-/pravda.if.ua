@@ -30,6 +30,7 @@
 {
     [super viewDidLoad];
     [self setTitle:@"Loading..."];
+    
     [self refresh:nil];
 }
 
