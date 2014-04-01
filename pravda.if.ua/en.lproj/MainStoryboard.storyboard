@@ -170,8 +170,14 @@
                             <constraint firstAttribute="bottom" secondItem="vUB-1M-wpC" secondAttribute="bottom" id="cIg-uP-an6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="BeI-Gg-8od"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" id="BeI-Gg-8od">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="uS1-0v-055">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="shareButton:" destination="r7A-Mp-p9h" id="lML-jc-2jC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionView" destination="vUB-1M-wpC" id="mx2-pu-Efh"/>
                         <outlet property="view" destination="mOG-Ng-vW7" id="lIz-XC-bO7"/>

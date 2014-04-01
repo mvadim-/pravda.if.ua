@@ -16,6 +16,7 @@
 @end
 
 @implementation DetailViewController
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -48,6 +49,7 @@
     return number;
 
 }
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     webView.scalesPageToFit = YES;//set here
@@ -59,9 +61,21 @@
     NSString *jsString = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
                           280];
     [self.descriptionView stringByEvaluatingJavaScriptFromString:jsString];
-    
-  //  [self.descriptionView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('img')[1].style.width = '180px'"];
-
 }
+- (IBAction)shareButton:(UIBarButtonItem *)sender
+{
+    NSString *title = self.rssItem.title;
+    NSString *description = self.rssItem.itemDescription;
+
+    NSArray *items = @[title,description];
+    
+    
+    UIActivityViewController *activity = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities: nil];
+    
+    
+    [self presentViewController:activity animated:YES completion:nil];
+}
+
+
 
 @end
