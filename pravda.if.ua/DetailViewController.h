@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RSSItem.h"
 @interface DetailViewController : UIViewController
-@property (nonatomic, strong) UIImage *image;
-@property (nonatomic,strong) NSString *lable;
+
+@property (nonatomic,strong) RSSItem *rssItem;
+
 @end

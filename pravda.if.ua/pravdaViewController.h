@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface pravdaViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface pravdaViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,NSXMLParserDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
+@property (strong, nonatomic) NSArray *dataSource;
 
 @end
