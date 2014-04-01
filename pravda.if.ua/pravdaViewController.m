@@ -36,10 +36,10 @@
 - (IBAction)refresh:(UIBarButtonItem *)sender
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://pravda.if.ua/rss_new.php"]];
+    NSURLRequest *req   = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://pravda.if.ua/rss_new.php"]];
     [RSSParser parseRSSFeedForRequest:req success:^(NSArray *feedItems) {
         [self setTitle:@"Правда.if.ua"];
-        self.dataSource=feedItems;
+        self.dataSource = feedItems;
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.myCollectionView reloadData];
     } failure:^(NSError *error) {
