@@ -9,7 +9,7 @@
 #import "DetailViewController.h"
 #import "MBProgressHUD.h"
 
-@interface DetailViewController ()<UIWebViewDelegate>
+@interface DetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *descriptionView;
 
@@ -20,14 +20,14 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    NSString *html = [NSString stringWithFormat: @"http://pravda.if.ua/print.php?id=%@",[self searchNewsNumberInLink:[self.rssItem.link absoluteString]]];
-    NSLog(@"html:%@",html);
 
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSString *html = [NSString stringWithFormat: @"http://pravda.if.ua/print.php?id=%@",[self searchNewsNumberInLink:[self.rssItem.link absoluteString]]];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:html]];
     [self.descriptionView loadRequest:request];
     self.descriptionView.scrollView.showsVerticalScrollIndicator = NO;
+    self.descriptionView.scrollView.delegate = self;
+
 }
 
 -(NSString*)searchNewsNumberInLink:(NSString*)link;
@@ -42,10 +42,8 @@
                               range:NSMakeRange(0, [link length])
                          usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
                              number = [number stringByAppendingString:[link substringWithRange:result.range]];
-                             NSLog(@"number:%@", number);
 
                          }];
-    NSLog(@"link:%@, return number:%@",link, number);
     return number;
 
 }
@@ -55,12 +53,26 @@
     webView.scalesPageToFit = YES;//set here
     return YES;
 }
+
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    NSString *jsString = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
-                          280];
-    [self.descriptionView stringByEvaluatingJavaScriptFromString:jsString];
+    NSString *jsBody = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
+                          400];
+    NSString *jsTitle = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('h1')[0].style.webkitTextSizeAdjust= '%d%%'",
+                          200];
+    [self.descriptionView stringByEvaluatingJavaScriptFromString:jsBody];
+    [self.descriptionView stringByEvaluatingJavaScriptFromString:jsTitle];
+    // Disable user selection
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
+    // Disable callout
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
+
+    
+}
+-(UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView
+{
+    return nil;
 }
 - (IBAction)shareButton:(UIBarButtonItem *)sender
 {

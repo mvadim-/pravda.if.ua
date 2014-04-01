@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"Loading..."];
+    [self setTitle:@"Завантаження..."];
     
     [self refresh:nil];
 }
@@ -45,8 +45,7 @@
         [self.myCollectionView reloadData];
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [self setTitle:@"Error"];
-        NSLog(@"Error: %@",error);
+        [self setTitle:@"Помилка"];
     }];
 }
 
@@ -77,10 +76,29 @@
         cell.dateLable.text = date_string;
     }
     
-    if ([[item imagesFromItemDescription] count]) {
-        [cell.imageInCell setImageWithURL:[NSURL URLWithString:[item.imagesFromItemDescription objectAtIndex:0]]
-                         placeholderImage:[UIImage imageNamed:@"pravda.png"]];
-    }   else cell.imageInCell.image=[UIImage imageNamed:@"pravda.png"];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.frame = CGRectMake(0, 0, 44, 44);
+    spinner.center = cell.imageInCell.center;
+    spinner.hidesWhenStopped = YES;
+    if ([[item imagesFromItemDescription] count])
+    {
+        [cell.imageInCell addSubview:spinner];
+        [spinner startAnimating];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[item.imagesFromItemDescription objectAtIndex:0]]];
+        
+        [cell.imageInCell setImageWithURLRequest:request placeholderImage:nil
+                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                             [spinner stopAnimating];
+
+                                             cell.imageInCell.image = image;
+                                         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                             cell.imageInCell.image = [UIImage imageNamed:@"pravda"];
+                                             [spinner stopAnimating];
+                                         }];
+        
+        
+        
+    }   else cell.imageInCell.image=[UIImage imageNamed:@"pravda"];
     return cell;
 }
 

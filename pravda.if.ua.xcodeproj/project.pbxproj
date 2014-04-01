@@ -19,10 +19,17 @@
 		B765D53E172E5C0A00973238 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B765D53C172E5C0A00973238 /* MainStoryboard.storyboard */; };
 		B765D541172E5C0A00973238 /* pravdaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B765D540172E5C0A00973238 /* pravdaViewController.m */; };
 		B765D54B172E6D7200973238 /* MyCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B765D54A172E6D7200973238 /* MyCustomCell.m */; };
-		B7ABB5DB172E7AA300B9EA5A /* pravda_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ABB5DA172E7AA300B9EA5A /* pravda_icon.png */; };
-		B7ABB5DD172E7AA800B9EA5A /* pravda_icon_ritna.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ABB5DC172E7AA800B9EA5A /* pravda_icon_ritna.png */; };
 		D90B2004172F0319000A1466 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D90B2003172F0319000A1466 /* DetailViewController.m */; };
-		D9189A8F18EB3E8D009BD565 /* pravda.png in Resources */ = {isa = PBXBuildFile; fileRef = D9189A8E18EB3E8D009BD565 /* pravda.png */; };
+		D9189A9518EB41E9009BD565 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9189A9418EB41E9009BD565 /* Images.xcassets */; };
+		D9189A9818EB421A009BD565 /* pravda.png in Resources */ = {isa = PBXBuildFile; fileRef = D9189A9618EB421A009BD565 /* pravda.png */; };
+		D9189A9918EB421A009BD565 /* pravda@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9189A9718EB421A009BD565 /* pravda@2x.png */; };
+		D9189A9C18EB435A009BD565 /* pravda_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = D9189A9A18EB435A009BD565 /* pravda_spotlight.png */; };
+		D9189A9D18EB435A009BD565 /* pravda_spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9189A9B18EB435A009BD565 /* pravda_spotlight@2x.png */; };
+		D9189AA318EB4484009BD565 /* pravda_ios7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9189AA218EB4484009BD565 /* pravda_ios7@2x.png */; };
+		D9189AA518EB44AF009BD565 /* pravda_spotlight_ios7.png in Resources */ = {isa = PBXBuildFile; fileRef = D9189AA418EB44AF009BD565 /* pravda_spotlight_ios7.png */; };
+		D9189AA818EB4566009BD565 /* pravda_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D9189AA618EB4566009BD565 /* pravda_icon.png */; };
+		D9189AA918EB4566009BD565 /* pravda_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9189AA718EB4566009BD565 /* pravda_icon@2x.png */; };
+		D9189AAB18EB47F0009BD565 /* LunchImageIphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = D9189AAA18EB47F0009BD565 /* LunchImageIphone5.png */; };
 		D93E569F1733CE48006BE11B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93E569E1733CE48006BE11B /* SystemConfiguration.framework */; };
 		D93E56A11733CE5A006BE11B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93E56A01733CE5A006BE11B /* MobileCoreServices.framework */; };
 		D96CDCC618E9EFCD006B1617 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D96CDCB418E9EFCD006B1617 /* AFHTTPClient.m */; };
@@ -73,11 +80,18 @@
 		B765D540172E5C0A00973238 /* pravdaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pravdaViewController.m; sourceTree = "<group>"; };
 		B765D549172E6D7200973238 /* MyCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCustomCell.h; sourceTree = "<group>"; };
 		B765D54A172E6D7200973238 /* MyCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomCell.m; sourceTree = "<group>"; };
-		B7ABB5DA172E7AA300B9EA5A /* pravda_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pravda_icon.png; path = ../pravda_icon.png; sourceTree = "<group>"; };
-		B7ABB5DC172E7AA800B9EA5A /* pravda_icon_ritna.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pravda_icon_ritna.png; path = ../pravda_icon_ritna.png; sourceTree = "<group>"; };
 		D90B2002172F0319000A1466 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		D90B2003172F0319000A1466 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		D9189A8E18EB3E8D009BD565 /* pravda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pravda.png; sourceTree = "<group>"; };
+		D9189A9418EB41E9009BD565 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D9189A9618EB421A009BD565 /* pravda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pravda.png; sourceTree = "<group>"; };
+		D9189A9718EB421A009BD565 /* pravda@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pravda@2x.png"; sourceTree = "<group>"; };
+		D9189A9A18EB435A009BD565 /* pravda_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pravda_spotlight.png; sourceTree = "<group>"; };
+		D9189A9B18EB435A009BD565 /* pravda_spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pravda_spotlight@2x.png"; sourceTree = "<group>"; };
+		D9189AA218EB4484009BD565 /* pravda_ios7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pravda_ios7@2x.png"; sourceTree = "<group>"; };
+		D9189AA418EB44AF009BD565 /* pravda_spotlight_ios7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pravda_spotlight_ios7.png; sourceTree = "<group>"; };
+		D9189AA618EB4566009BD565 /* pravda_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pravda_icon.png; sourceTree = "<group>"; };
+		D9189AA718EB4566009BD565 /* pravda_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pravda_icon@2x.png"; sourceTree = "<group>"; };
+		D9189AAA18EB47F0009BD565 /* LunchImageIphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LunchImageIphone5.png; sourceTree = "<group>"; };
 		D93E569E1733CE48006BE11B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D93E56A01733CE5A006BE11B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D96CDCB318E9EFCD006B1617 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -134,12 +148,18 @@
 		B71A84081730033100C50490 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				D9189A8E18EB3E8D009BD565 /* pravda.png */,
-				B7ABB5DC172E7AA800B9EA5A /* pravda_icon_ritna.png */,
+				D9189AAA18EB47F0009BD565 /* LunchImageIphone5.png */,
+				D9189AA618EB4566009BD565 /* pravda_icon.png */,
+				D9189AA718EB4566009BD565 /* pravda_icon@2x.png */,
+				D9189AA418EB44AF009BD565 /* pravda_spotlight_ios7.png */,
+				D9189AA218EB4484009BD565 /* pravda_ios7@2x.png */,
+				D9189A9A18EB435A009BD565 /* pravda_spotlight.png */,
+				D9189A9B18EB435A009BD565 /* pravda_spotlight@2x.png */,
+				D9189A9618EB421A009BD565 /* pravda.png */,
+				D9189A9718EB421A009BD565 /* pravda@2x.png */,
 				B765D536172E5C0A00973238 /* Default.png */,
 				B765D538172E5C0A00973238 /* Default@2x.png */,
 				B765D53A172E5C0A00973238 /* Default-568h@2x.png */,
-				B7ABB5DA172E7AA300B9EA5A /* pravda_icon.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -186,6 +206,7 @@
 				B765D54A172E6D7200973238 /* MyCustomCell.m */,
 				D90B2002172F0319000A1466 /* DetailViewController.h */,
 				D90B2003172F0319000A1466 /* DetailViewController.m */,
+				D9189A9418EB41E9009BD565 /* Images.xcassets */,
 				B765D52B172E5C0A00973238 /* Supporting Files */,
 			);
 			path = pravda.if.ua;
@@ -340,18 +361,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9189A9918EB421A009BD565 /* pravda@2x.png in Resources */,
 				D96CDCE318E9FE15006B1617 /* README.mdown in Resources */,
 				B765D52F172E5C0A00973238 /* InfoPlist.strings in Resources */,
+				D9189AA918EB4566009BD565 /* pravda_icon@2x.png in Resources */,
 				B765D537172E5C0A00973238 /* Default.png in Resources */,
+				D9189A9518EB41E9009BD565 /* Images.xcassets in Resources */,
 				B765D539172E5C0A00973238 /* Default@2x.png in Resources */,
 				B765D53B172E5C0A00973238 /* Default-568h@2x.png in Resources */,
 				D96CDCDF18E9FE15006B1617 /* LICENSE in Resources */,
+				D9189A9C18EB435A009BD565 /* pravda_spotlight.png in Resources */,
+				D9189AAB18EB47F0009BD565 /* LunchImageIphone5.png in Resources */,
 				B765D53E172E5C0A00973238 /* MainStoryboard.storyboard in Resources */,
+				D9189A9818EB421A009BD565 /* pravda.png in Resources */,
 				D96CDCE118E9FE15006B1617 /* MBProgressHUD.podspec in Resources */,
-				D9189A8F18EB3E8D009BD565 /* pravda.png in Resources */,
-				B7ABB5DB172E7AA300B9EA5A /* pravda_icon.png in Resources */,
-				B7ABB5DD172E7AA800B9EA5A /* pravda_icon_ritna.png in Resources */,
+				D9189AA818EB4566009BD565 /* pravda_icon.png in Resources */,
+				D9189AA318EB4484009BD565 /* pravda_ios7@2x.png in Resources */,
+				D9189AA518EB44AF009BD565 /* pravda_spotlight_ios7.png in Resources */,
 				D96CDCE218E9FE15006B1617 /* MBProgressHUD.xcworkspace in Resources */,
+				D9189A9D18EB435A009BD565 /* pravda_spotlight@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +496,8 @@
 		B765D545172E5C0A00973238 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Vadym Maslov (W89PJ4CD9F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vadym Maslov (W89PJ4CD9F)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -484,6 +514,8 @@
 		B765D546172E5C0A00973238 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
