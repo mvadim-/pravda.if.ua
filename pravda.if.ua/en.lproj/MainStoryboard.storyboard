@@ -8,7 +8,7 @@
         <!--Pravda View Controller - Правда.if.ua-->
         <scene sceneID="MyQ-Vy-Gbt">
             <objects>
-                <viewController id="OOn-Cx-6y9" customClass="pravdaViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pravdaViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OOn-Cx-6y9" customClass="pravdaViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w6t-qG-zjI"/>
                         <viewControllerLayoutGuide type="bottom" id="0JQ-TA-EtG"/>

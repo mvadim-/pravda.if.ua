@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 @property (strong, nonatomic) NSArray *dataSource;
 
+- (IBAction)refresh:(UIBarButtonItem *)sender;
+
 @end
