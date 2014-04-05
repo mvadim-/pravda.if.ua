@@ -153,12 +153,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="vUB-1M-wpC">
+                            <webView contentMode="scaleAspectFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vUB-1M-wpC">
                                 <rect key="frame" x="0.0" y="0.0" width="315" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="r7A-Mp-p9h" id="0cd-0b-qRK"/>
+                                    <outletCollection property="gestureRecognizers" destination="FgR-NW-lsu" appends="YES" id="df7-ft-9TB"/>
                                 </connections>
                             </webView>
                         </subviews>
@@ -180,10 +183,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionView" destination="vUB-1M-wpC" id="mx2-pu-Efh"/>
+                        <outlet property="doubleTap" destination="FgR-NW-lsu" id="ul2-WK-cbj"/>
                         <outlet property="view" destination="mOG-Ng-vW7" id="lIz-XC-bO7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKo-qq-4aC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="FgR-NW-lsu">
+                    <connections>
+                        <action selector="boubleTap:" destination="r7A-Mp-p9h" id="p0h-US-eHW"/>
+                        <outlet property="delegate" destination="r7A-Mp-p9h" id="nFO-nG-JlT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-103" y="383"/>
         </scene>
