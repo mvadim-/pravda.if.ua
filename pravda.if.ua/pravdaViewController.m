@@ -63,8 +63,8 @@
 
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self setTitle:@"Помилка"];
-        NSString *errorString = [NSString stringWithFormat:@"%@.\nСпробуйте оновити данні.",[error localizedDescription]];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Щось трапилось:" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        NSString *errorString   = [NSString stringWithFormat:@"%@.\nСпробуйте оновити данні.",[error localizedDescription]];
+        UIAlertView* alert      = [[UIAlertView alloc] initWithTitle:@"Щось трапилось:" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }];
 }
@@ -90,18 +90,18 @@
     if([item.category length]) cell.categoryLabel.text  = item.category;
     if (item.pubDate)
     {
-        NSDateFormatter * date_format = [[NSDateFormatter alloc] init];
+        NSDateFormatter * date_format   = [[NSDateFormatter alloc] init];
         [date_format setDateFormat:@"MMM dd, HH:mm"];
-        NSString * date_string = [date_format stringFromDate: item.pubDate];
-        cell.dateLable.text = date_string;
+        NSString * date_string          = [date_format stringFromDate: item.pubDate];
+        cell.dateLable.text             = date_string;
     }
     
         if ([[item imagesFromItemDescription] count])
     {
-        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        spinner.frame = CGRectMake(0, 0, 44, 44);
-        spinner.center = cell.imageInCell.center;
-        spinner.hidesWhenStopped = YES;
+        UIActivityIndicatorView *spinner    = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        spinner.frame                       = CGRectMake(0, 0, 44, 44);
+        spinner.center                      = cell.imageInCell.center;
+        spinner.hidesWhenStopped            = YES;
 
         [cell.imageInCell addSubview:spinner];
         [spinner startAnimating];
@@ -110,7 +110,6 @@
         [cell.imageInCell setImageWithURLRequest:request placeholderImage:nil
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                              [spinner stopAnimating];
-                                             
                                              cell.imageInCell.image = image;
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                              cell.imageInCell.image = [UIImage imageNamed:@"pravda"];
@@ -119,7 +118,7 @@
         
         
         
-    }   else cell.imageInCell.image=[UIImage imageNamed:@"pravda"];
+    }   else cell.imageInCell.image = [UIImage imageNamed:@"pravda"];
     return cell;
 }
 
@@ -127,9 +126,9 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"])
     {
-        NSIndexPath *selectedIndexPath = [[self.myCollectionView indexPathsForSelectedItems] objectAtIndex:0];
-        DetailViewController *detailViewController = [segue destinationViewController];
-        detailViewController.rssItem=[self.dataSource objectAtIndex:selectedIndexPath.row];
+        NSIndexPath *selectedIndexPath              = [[self.myCollectionView indexPathsForSelectedItems] objectAtIndex:0];
+        DetailViewController *detailViewController  = [segue destinationViewController];
+        detailViewController.rssItem                = [self.dataSource objectAtIndex:selectedIndexPath.row];
     }
 }
 
