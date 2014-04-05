@@ -154,7 +154,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="vUB-1M-wpC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="315" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -164,10 +164,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vUB-1M-wpC" firstAttribute="leading" secondItem="mOG-Ng-vW7" secondAttribute="leading" id="CMr-L7-vNz"/>
-                            <constraint firstAttribute="trailing" secondItem="vUB-1M-wpC" secondAttribute="trailing" id="U5b-Wd-APi"/>
-                            <constraint firstItem="vUB-1M-wpC" firstAttribute="top" secondItem="mOG-Ng-vW7" secondAttribute="top" id="bXa-e6-hRQ"/>
-                            <constraint firstAttribute="bottom" secondItem="vUB-1M-wpC" secondAttribute="bottom" id="cIg-uP-an6"/>
+                            <constraint firstItem="vUB-1M-wpC" firstAttribute="leading" secondItem="mOG-Ng-vW7" secondAttribute="leading" id="6wk-e0-iaY"/>
+                            <constraint firstAttribute="bottom" secondItem="vUB-1M-wpC" secondAttribute="bottom" id="BNz-Bb-1mE"/>
+                            <constraint firstItem="vUB-1M-wpC" firstAttribute="top" secondItem="mOG-Ng-vW7" secondAttribute="top" id="QiB-87-8QA"/>
+                            <constraint firstAttribute="trailing" secondItem="vUB-1M-wpC" secondAttribute="trailing" constant="5" id="f0O-Zn-8vu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BeI-Gg-8od">

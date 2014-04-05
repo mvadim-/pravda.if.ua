@@ -8,6 +8,9 @@
 
 #import "DetailViewController.h"
 #import "MBProgressHUD.h"
+#import "AFNetworking.h"
+#import "NSString+HTML.h"
+
 
 @interface DetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 
@@ -29,6 +32,7 @@
     self.descriptionView.scrollView.delegate = self;
 
 }
+
 
 -(NSString*)searchNewsNumberInLink:(NSString*)link;
 {
@@ -70,24 +74,21 @@
 
     
 }
+
 -(UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView
 {
     return nil;
 }
+
 - (IBAction)shareButton:(UIBarButtonItem *)sender
 {
     NSString *title = self.rssItem.title;
-    NSString *description = self.rssItem.itemDescription;
-
+    NSString *description = [self.rssItem.itemDescription stringByConvertingHTMLToPlainText] ;
     NSArray *items = @[title,description];
-    
-    
     UIActivityViewController *activity = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities: nil];
-    
-    
+    activity.excludedActivityTypes = @[UIActivityTypePostToWeibo,UIActivityTypeAirDrop,UIActivityTypeCopyToPasteboard];
     [self presentViewController:activity animated:YES completion:nil];
 }
-
 
 
 @end

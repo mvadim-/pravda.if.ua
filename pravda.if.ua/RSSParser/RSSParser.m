@@ -8,6 +8,9 @@
 
 #import "RSSParser.h"
 
+#import "AFHTTPRequestOperation.h"
+#import "AFURLResponseSerialization.h"
+
 @implementation RSSParser
 
 #pragma mark lifecycle
@@ -39,35 +42,31 @@
     
     block = [success copy];
     
-    AFXMLRequestOperation *operation = [RSSParser XMLParserRequestOperationWithRequest:urlRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *XMLParser) {
-        [XMLParser setDelegate:self];
-        [XMLParser parse];
-        
-        
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, NSXMLParser *XMLParse) {
-        failure(error);
-    }];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
+    
+    operation.responseSerializer = [[AFXMLParserResponseSerializer alloc] init];
+    operation.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/xml", @"text/xml",@"application/rss+xml", @"application/atom+xml", nil];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        failblock = [failure copy];
+        [(NSXMLParser *)responseObject setDelegate:self];
+        [(NSXMLParser *)responseObject parse];
+    }
+                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         failure(error);
+                                     }];
+    
     [operation start];
+    
 }
 
 #pragma mark -
-
-#pragma mark AFNetworking AFXMLRequestOperation acceptable Content-Type overwriting
-
-+ (NSSet *)defaultAcceptableContentTypes {
-    return [NSSet setWithObjects:@"application/xml", @"text/xml",@"application/rss+xml", nil];
-}
-+ (NSSet *)acceptableContentTypes {
-    return [self defaultAcceptableContentTypes];
-}
-#pragma mark -
-
 #pragma mark NSXMLParser delegate
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
     
-    if ([elementName isEqualToString:@"item"]) {
+    if ([elementName isEqualToString:@"item"] || [elementName isEqualToString:@"entry"]) {
         currentItem = [[RSSItem alloc] init];
     }
     
@@ -77,7 +76,7 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {    
-    if ([elementName isEqualToString:@"item"]) {
+    if ([elementName isEqualToString:@"item"] || [elementName isEqualToString:@"entry"]) {
         [items addObject:currentItem];
     }
     if (currentItem != nil && tmpString != nil) {
@@ -88,11 +87,12 @@
         if ([elementName isEqualToString:@"category"]) {
             [currentItem setCategory:tmpString];
         }
+        
         if ([elementName isEqualToString:@"description"]) {
             [currentItem setItemDescription:tmpString];
         }
         
-        if ([elementName isEqualToString:@"content:encoded"]) {
+        if ([elementName isEqualToString:@"content:encoded"] || [elementName isEqualToString:@"content"]) {
             [currentItem setContent:tmpString];
         }
         
@@ -132,7 +132,7 @@
         }
     }
     
-    if ([elementName isEqualToString:@"rss"]) {
+    if ([elementName isEqualToString:@"rss"] || [elementName isEqualToString:@"feed"]) {
         block(items);
     }
     
@@ -142,6 +142,12 @@
 {
     [tmpString appendString:string];
     
+}
+
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+{
+    failblock(parseError);
+    [parser abortParsing];
 }
 
 #pragma mark -
