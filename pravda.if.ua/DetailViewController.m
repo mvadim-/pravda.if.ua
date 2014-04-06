@@ -30,7 +30,9 @@
 {
     [super viewDidLoad];
     NSNumber *textSize = [[NSUserDefaults standardUserDefaults] objectForKey:@"sliderValue"];
-    self.textSlider.value = [textSize floatValue];
+    
+    self.textSlider.value = textSize ? [textSize floatValue] : 1.5;
+    
     self.textSize = [[UIBarButtonItem alloc] initWithTitle:@"aA" style:UIBarButtonItemStylePlain  target:self action:@selector(showToolbar)];
     
     [self.navigationItem setRightBarButtonItems:@[self.shareButton,self.textSize] animated:YES ];
