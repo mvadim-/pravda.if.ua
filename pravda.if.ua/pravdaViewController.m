@@ -110,7 +110,6 @@
         [cell.imageInCell setImageWithURLRequest:request placeholderImage:nil
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                              [spinner stopAnimating];
-                                             
                                              cell.imageInCell.image = image;
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                              cell.imageInCell.image = [UIImage imageNamed:@"pravda"];
