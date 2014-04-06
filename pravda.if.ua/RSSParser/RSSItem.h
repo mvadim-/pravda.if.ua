@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RSSItem : NSObject
+@interface RSSItem : NSObject <NSCoding>
 
 @property (strong,nonatomic) NSString *title;
 @property (strong,nonatomic) NSString *category;
+
 @property (strong,nonatomic) NSString *itemDescription;
 @property (strong,nonatomic) NSString *content;
 @property (strong,nonatomic) NSURL *link;

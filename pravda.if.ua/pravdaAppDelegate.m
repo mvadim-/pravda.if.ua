@@ -20,14 +20,14 @@
 /**
  *  Add different orientation support
  */
-- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{NSUInteger orientations =UIInterfaceOrientationMaskAllButUpsideDown;
-    if(self.window.rootViewController){
-        UIViewController *presentedViewController = [[(UINavigationController *)self.window.rootViewController viewControllers] lastObject];
-        orientations = [presentedViewController supportedInterfaceOrientations];
-    }
-    return orientations;
-}
-							
+//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{NSUInteger orientations =UIInterfaceOrientationMaskAllButUpsideDown;
+//    if(self.window.rootViewController){
+//        UIViewController *presentedViewController = [[(UINavigationController *)self.window.rootViewController viewControllers] lastObject];
+//        orientations = [presentedViewController supportedInterfaceOrientations];
+//    }
+//    return orientations;
+//}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

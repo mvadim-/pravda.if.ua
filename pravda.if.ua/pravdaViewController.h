@@ -11,7 +11,8 @@
 @interface pravdaViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,NSXMLParserDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
-@property (strong, nonatomic) NSArray *dataSource;
+@property (strong, nonatomic) NSMutableArray *dataSource;
+@property (strong, nonatomic)  NSNumber *category;
 
 - (IBAction)refresh:(UIBarButtonItem *)sender;
 

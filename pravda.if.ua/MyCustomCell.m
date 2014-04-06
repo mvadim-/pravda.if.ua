@@ -9,30 +9,24 @@
 #import "MyCustomCell.h"
 
 @implementation MyCustomCell
+
 -(void)setImageInCell:(UIImageView *)imageInCell
 {
-    _imageInCell = imageInCell;
-    _imageInCell.clipsToBounds = YES;
+    _imageInCell                = imageInCell;
+    _imageInCell.clipsToBounds  = YES;
 }
+
 -(void)awakeFromNib
 {
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.layer.shadowOpacity = 0.7f;
-    self.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-    self.layer.shadowRadius = 1.0f;
-    self.layer.masksToBounds = NO;
+    self.layer.shadowColor      = [UIColor blackColor].CGColor;
+    self.layer.shadowOpacity    = 0.7f;
+    self.layer.shadowOffset     = CGSizeMake(1.0f, 1.0f);
+    self.layer.shadowRadius     = 1.0f;
+    self.layer.masksToBounds    = NO;
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.bounds];
-    self.layer.shadowPath = path.CGPath;
+    UIBezierPath *path          = [UIBezierPath bezierPathWithRect:self.bounds];
+    self.layer.shadowPath =     path.CGPath;
 
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
