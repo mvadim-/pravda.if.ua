@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *descriptionView;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTap;
 @property (strong, nonatomic)  NSArray *photos;
+@property (weak, nonatomic) IBOutlet UISlider *textSlider;
 @end
 
 @implementation DetailViewController
@@ -28,14 +29,21 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.textSize = [[UIBarButtonItem alloc] initWithTitle:@"Aa" style:UIBarButtonItemStylePlain  target:self action:@selector(showToolbar)];
+    NSNumber *textSize = [[NSUserDefaults standardUserDefaults] objectForKey:@"sliderValue"];
+    self.textSlider.value = [textSize floatValue];
+    self.textSize = [[UIBarButtonItem alloc] initWithTitle:@"aA" style:UIBarButtonItemStylePlain  target:self action:@selector(showToolbar)];
     
     [self.navigationItem setRightBarButtonItems:@[self.shareButton,self.textSize] animated:YES ];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSString *html          = [NSString stringWithFormat: @"http://pravda.if.ua/print.php?id=%@",
                                [self searchNewsNumberInLink:[self.rssItem.link absoluteString]]];
     NSURLRequest *request   = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:html]];
+   
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSlider)];
+    tap.numberOfTapsRequired = 1;
+    tap.delegate = self;
     
+    [self.descriptionView addGestureRecognizer:tap];
     [self.descriptionView loadRequest:request];
     self.descriptionView.scrollView.showsVerticalScrollIndicator = NO;
     self.descriptionView.scrollView.delegate = self;
@@ -44,25 +52,46 @@
 -(void)loadView
 {
     [super loadView];
-    [self.toolbar setHidden:YES ];
+    self.toolbar.alpha = 0;
 }
 
 -(void)showToolbar
 {
-    if (self.toolbar.isHidden) {
-        [self.toolbar setHidden:NO ];
-    }else [self.toolbar setHidden:YES ];
+    if (self.toolbar.alpha == 0) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.toolbar.alpha = 1;
+        }];
+    }else {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.toolbar.alpha = 0;
+        }];
+    }
 }
 
-- (IBAction)changeTextSize:(UISlider *)sender {
+-(void)hideSlider
+{
+    if (!self.toolbar.alpha == 0) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.toolbar.alpha = 0;
+        }];
+        
+    }
+}
+- (IBAction)changeTextSize:(UISlider *)sender
+{
+    NSNumber *textsize = [NSNumber numberWithInt:sender.value * 267];
+    NSNumber *value = [NSNumber numberWithFloat:sender.value ];
     
-    NSInteger textsize = sender.value * 267;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:textsize forKey:@"textSize"];
+    [userDefaults setObject:value forKey:@"sliderValue"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     NSString *jsBody    = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
-                           textsize];
-    
+                           [textsize intValue]];
     [self.descriptionView stringByEvaluatingJavaScriptFromString:jsBody];
 }
-
 
 -(NSString*)searchNewsNumberInLink:(NSString*)link;
 {
@@ -78,7 +107,6 @@
                              number = [number stringByAppendingString:[link substringWithRange:result.range]];
                          }];
     return number;
-    
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -94,10 +122,14 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    NSNumber *textSize = [[NSUserDefaults standardUserDefaults] objectForKey:@"textSize"];
+    if (!textSize) {
+        textSize = @400;
+    }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     NSString *jsBody    = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
-                           400];
+                           [textSize intValue]];
     NSString *jsTitle   = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('h1')[0].style.webkitTextSizeAdjust= '%d%%'",
                            200];
     [self.descriptionView stringByEvaluatingJavaScriptFromString:jsBody];
@@ -196,12 +228,12 @@
 {
     return nil;//disable zooming in webview
 }
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (!self.toolbar.isHidden) {
-        [self.toolbar setHidden:YES ];
-    }
+    [self hideSlider];
 }
+
 - (IBAction)shareButton:(UIBarButtonItem *)sender
 {
     NSString *title         = self.rssItem.title;

@@ -364,16 +364,17 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" id="AyE-eh-J8p">
-                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.5" minValue="1" maxValue="2" id="KIQ-Jj-kv7">
+                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.5" minValue="1" maxValue="2" minimumValueImage="a-" maximumValueImage="a+" id="KIQ-Jj-kv7">
                                             <rect key="frame" x="14" y="6" width="292" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="tintColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="changeTextSize:" destination="r7A-Mp-p9h" eventType="valueChanged" id="gPb-IZ-yYz"/>
                                             </connections>
                                         </slider>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" red="0.27450981740000002" green="0.60392159219999997" blue="0.28627452250000002" alpha="1" colorSpace="deviceRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -399,6 +400,7 @@
                         <outlet property="descriptionView" destination="vUB-1M-wpC" id="mx2-pu-Efh"/>
                         <outlet property="doubleTap" destination="FgR-NW-lsu" id="ul2-WK-cbj"/>
                         <outlet property="shareButton" destination="uS1-0v-055" id="pmy-cC-ltQ"/>
+                        <outlet property="textSlider" destination="KIQ-Jj-kv7" id="9ct-bM-35A"/>
                         <outlet property="toolbar" destination="jVc-uS-tna" id="TyO-jB-l4o"/>
                         <outlet property="view" destination="mOG-Ng-vW7" id="lIz-XC-bO7"/>
                     </connections>
@@ -415,6 +417,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="a+" width="22" height="17"/>
+        <image name="a-" width="22" height="17"/>
         <image name="pravda.png" width="60" height="60"/>
         <image name="reveal-icon" width="22" height="17"/>
     </resources>
