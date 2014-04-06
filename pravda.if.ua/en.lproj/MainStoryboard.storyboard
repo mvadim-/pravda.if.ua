@@ -23,7 +23,7 @@
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="irk-lU-hPx">
                                     <size key="itemSize" width="309" height="60"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
                                     <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
@@ -40,12 +40,12 @@
                                                         <constraint firstAttribute="width" constant="60" id="GuW-6D-xiZ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="221" translatesAutoresizingMaskIntoConstraints="NO" id="IKo-0H-ifM">
-                                                    <rect key="frame" x="68" y="4" width="221" height="40"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="236" translatesAutoresizingMaskIntoConstraints="NO" id="IKo-0H-ifM">
+                                                    <rect key="frame" x="68" y="4" width="236" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="sbs-zC-p37"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="1" height="-1"/>
                                                 </label>
@@ -75,7 +75,7 @@
                                             <constraint firstAttribute="bottom" secondItem="vbb-KW-Pwp" secondAttribute="bottom" constant="2" id="h8q-LE-tpE"/>
                                             <constraint firstItem="IKo-0H-ifM" firstAttribute="leading" secondItem="vbb-KW-Pwp" secondAttribute="leading" id="kmh-ql-zq5"/>
                                             <constraint firstItem="X3L-oN-mAb" firstAttribute="leading" secondItem="Q04-Gm-19h" secondAttribute="leading" id="u28-VJ-NA3"/>
-                                            <constraint firstAttribute="trailing" secondItem="IKo-0H-ifM" secondAttribute="trailing" constant="20" id="unO-Mm-kqo"/>
+                                            <constraint firstAttribute="trailing" secondItem="IKo-0H-ifM" secondAttribute="trailing" constant="5" id="unO-Mm-kqo"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="categoryLabel" destination="vbb-KW-Pwp" id="y6F-Rf-wBr"/>
@@ -86,6 +86,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footer" id="jMo-5e-Jwf">
+                                    <rect key="frame" x="0.0" y="134" width="320" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="OOn-Cx-6y9" id="hP6-mh-6YJ"/>
                                     <outlet property="delegate" destination="OOn-Cx-6y9" id="wZC-VG-mzh"/>

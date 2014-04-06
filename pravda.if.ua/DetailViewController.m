@@ -58,11 +58,12 @@
     webView.scalesPageToFit = YES;//set here
     return YES;
 }
+
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
 }
+
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -77,16 +78,17 @@
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     // Disable callout
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
-
-    
 }
+
 - (IBAction)boubleTap:(UITapGestureRecognizer *)sender
 {
+    //java script for detecting images in html code
     NSString *script = @"var names = []; var a = document.getElementsByTagName(\"IMG\");for (var i=0, len=a.length; i<len; i++){names.push(document.images[i].src);}String(names);";
-    NSString *urls = [self.descriptionView stringByEvaluatingJavaScriptFromString:script];
+    NSString *urls   = [self.descriptionView stringByEvaluatingJavaScriptFromString:script];
     NSArray *imageUrlArray = [urls componentsSeparatedByString:@","];
     [self removeLogoInArrayOfImages:imageUrlArray];
 }
+
 -(void)removeLogoInArrayOfImages:(NSArray*)array
 {
     __block NSMutableArray *images = [NSMutableArray new];
@@ -105,7 +107,9 @@
     // Create array of MWPhoto objects
     __block NSMutableArray *photos = [NSMutableArray array];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:obj]]];
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:obj]];
+        photo.caption = [NSString stringWithFormat:@"%@ \n %@",self.rssItem.title,self.rssItem.link];
+        [photos addObject:photo];
     }];
     self.photos = photos;
     
@@ -114,57 +118,63 @@
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     
     // Set options
-    browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
-    browser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)
+    browser.displayActionButton     = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
+    browser.displayNavArrows        = YES; // Whether to display left and right nav arrows on toolbar (defaults to NO)
     browser.displaySelectionButtons = NO; // Whether selection buttons are shown on each image (defaults to NO)
-    browser.zoomPhotosToFill = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
-    browser.alwaysShowControls = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
-    browser.enableGrid = YES; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
-    browser.startOnGrid = YES; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
-    browser.wantsFullScreenLayout = YES; // iOS 5 & 6 only: Decide if you want the photo browser full screen, i.e. whether the status bar is affected (defaults to YES)
+    browser.zoomPhotosToFill        = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+    browser.alwaysShowControls      = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
+    browser.enableGrid              = YES;   // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
+    browser.startOnGrid             = YES; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
+    browser.wantsFullScreenLayout   = YES; // iOS 5 & 6 only: Decide if you want the photo browser full screen, i.e. whether the status bar is affected (defaults to YES)
     
     // Optionally set the current visible photo before displaying
     [browser setCurrentPhotoIndex:[photos count]];
     
     // Modal
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    UINavigationController *nc  = [[UINavigationController alloc] initWithRootViewController:browser];
+    nc.modalTransitionStyle     = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:nc animated:YES completion:nil];
 
     // Manipulate
     [browser showNextPhotoAnimated:YES];
     [browser showPreviousPhotoAnimated:YES];
 }
-- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index {
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index
+{
     if (index < self.photos.count)
         return [self.photos objectAtIndex:index];
     return nil;
 }
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
+{
     return self.photos.count;
 }
 
-- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
+{
     if (index < self.photos.count)
         return [self.photos objectAtIndex:index];
     return nil;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
 	return YES;
 }
 
 -(UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView
 {
-    return nil;
+    return nil;//disable zooming in webview
 }
 
 - (IBAction)shareButton:(UIBarButtonItem *)sender
 {
     NSString *title         = self.rssItem.title;
     NSString *description   = [self.rssItem.itemDescription stringByConvertingHTMLToPlainText] ;
-    NSArray *items          = @[title,description];
+    NSString *link          = [self.rssItem.link  absoluteString];
+    NSArray *items          = @[title,description,link];
     UIActivityViewController *activity  = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities: nil];
     activity.excludedActivityTypes      = @[UIActivityTypePostToWeibo,UIActivityTypeAirDrop,UIActivityTypeCopyToPasteboard];
     [self presentViewController:activity animated:YES completion:nil];
