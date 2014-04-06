@@ -14,7 +14,10 @@
 #import "MWPhotoBrowser.h"
 
 @interface DetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,MWPhotoBrowserDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
+@property (strong, nonatomic) UIBarButtonItem *textSize;
 
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIWebView *descriptionView;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTap;
 @property (strong, nonatomic)  NSArray *photos;
@@ -25,23 +28,48 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.textSize = [[UIBarButtonItem alloc] initWithTitle:@"Aa" style:UIBarButtonItemStylePlain  target:self action:@selector(showToolbar)];
+    
+    [self.navigationItem setRightBarButtonItems:@[self.shareButton,self.textSize] animated:YES ];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSString *html          = [NSString stringWithFormat: @"http://pravda.if.ua/print.php?id=%@",
                                [self searchNewsNumberInLink:[self.rssItem.link absoluteString]]];
     NSURLRequest *request   = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:html]];
-   
+    
     [self.descriptionView loadRequest:request];
     self.descriptionView.scrollView.showsVerticalScrollIndicator = NO;
     self.descriptionView.scrollView.delegate = self;
 }
 
+-(void)loadView
+{
+    [super loadView];
+    [self.toolbar setHidden:YES ];
+}
+
+-(void)showToolbar
+{
+    if (self.toolbar.isHidden) {
+        [self.toolbar setHidden:NO ];
+    }else [self.toolbar setHidden:YES ];
+}
+
+- (IBAction)changeTextSize:(UISlider *)sender {
+    
+    NSInteger textsize = sender.value * 267;
+    NSString *jsBody    = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
+                           textsize];
+    
+    [self.descriptionView stringByEvaluatingJavaScriptFromString:jsBody];
+}
+
+
 -(NSString*)searchNewsNumberInLink:(NSString*)link;
 {
     NSError *error;
     NSRegularExpression *regex  = [NSRegularExpression regularExpressionWithPattern:@"\\d{5}"
-                                                                           options:0
-                                                                             error:&error];
+                                                                            options:0
+                                                                              error:&error];
     __block NSString *number    = @"";
     [regex enumerateMatchesInString:link
                             options:0
@@ -50,7 +78,7 @@
                              number = [number stringByAppendingString:[link substringWithRange:result.range]];
                          }];
     return number;
-
+    
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -69,9 +97,9 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     NSString *jsBody    = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
-                          400];
+                           400];
     NSString *jsTitle   = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('h1')[0].style.webkitTextSizeAdjust= '%d%%'",
-                          200];
+                           200];
     [self.descriptionView stringByEvaluatingJavaScriptFromString:jsBody];
     [self.descriptionView stringByEvaluatingJavaScriptFromString:jsTitle];
     // Disable user selection
@@ -125,7 +153,7 @@
     browser.alwaysShowControls      = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
     browser.enableGrid              = YES;   // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
     browser.startOnGrid             = YES; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
-  //  browser.wantsFullScreenLayout   = YES; // iOS 5 & 6 only: Decide if you want the photo browser full screen, i.e. whether the status bar is affected (defaults to YES)
+    //  browser.wantsFullScreenLayout   = YES; // iOS 5 & 6 only: Decide if you want the photo browser full screen, i.e. whether the status bar is affected (defaults to YES)
     
     // Optionally set the current visible photo before displaying
     [browser setCurrentPhotoIndex:[photos count]];
@@ -134,7 +162,7 @@
     UINavigationController *nc  = [[UINavigationController alloc] initWithRootViewController:browser];
     nc.modalTransitionStyle     = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:nc animated:YES completion:nil];
-
+    
     // Manipulate
     [browser showNextPhotoAnimated:YES];
     [browser showPreviousPhotoAnimated:YES];
@@ -168,7 +196,12 @@
 {
     return nil;//disable zooming in webview
 }
-
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (!self.toolbar.isHidden) {
+        [self.toolbar setHidden:YES ];
+    }
+}
 - (IBAction)shareButton:(UIBarButtonItem *)sender
 {
     NSString *title         = self.rssItem.title;

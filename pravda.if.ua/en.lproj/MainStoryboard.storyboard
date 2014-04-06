@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Bxi-x7-sGa">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -359,13 +359,32 @@
                                     <outletCollection property="gestureRecognizers" destination="FgR-NW-lsu" appends="YES" id="df7-ft-9TB"/>
                                 </connections>
                             </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVc-uS-tna">
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="AyE-eh-J8p">
+                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.5" minValue="1" maxValue="2" id="KIQ-Jj-kv7">
+                                            <rect key="frame" x="14" y="6" width="292" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="changeTextSize:" destination="r7A-Mp-p9h" eventType="valueChanged" id="gPb-IZ-yYz"/>
+                                            </connections>
+                                        </slider>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vUB-1M-wpC" firstAttribute="leading" secondItem="mOG-Ng-vW7" secondAttribute="leading" id="6wk-e0-iaY"/>
                             <constraint firstAttribute="bottom" secondItem="vUB-1M-wpC" secondAttribute="bottom" id="BNz-Bb-1mE"/>
+                            <constraint firstItem="jVc-uS-tna" firstAttribute="leading" secondItem="vUB-1M-wpC" secondAttribute="leading" id="Oij-cj-8Qh"/>
                             <constraint firstItem="vUB-1M-wpC" firstAttribute="top" secondItem="mOG-Ng-vW7" secondAttribute="top" id="QiB-87-8QA"/>
                             <constraint firstAttribute="trailing" secondItem="vUB-1M-wpC" secondAttribute="trailing" constant="5" id="f0O-Zn-8vu"/>
+                            <constraint firstItem="jVc-uS-tna" firstAttribute="bottom" secondItem="vUB-1M-wpC" secondAttribute="bottom" id="l2U-aF-pcR"/>
+                            <constraint firstAttribute="trailing" secondItem="jVc-uS-tna" secondAttribute="trailing" id="n9K-gO-EBg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BeI-Gg-8od">
@@ -379,6 +398,8 @@
                     <connections>
                         <outlet property="descriptionView" destination="vUB-1M-wpC" id="mx2-pu-Efh"/>
                         <outlet property="doubleTap" destination="FgR-NW-lsu" id="ul2-WK-cbj"/>
+                        <outlet property="shareButton" destination="uS1-0v-055" id="pmy-cC-ltQ"/>
+                        <outlet property="toolbar" destination="jVc-uS-tna" id="TyO-jB-l4o"/>
                         <outlet property="view" destination="mOG-Ng-vW7" id="lIz-XC-bO7"/>
                     </connections>
                 </viewController>
