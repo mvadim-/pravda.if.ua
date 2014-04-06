@@ -25,8 +25,8 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refresh;
 @property (strong, nonatomic)  UIRefreshControl *refreshControl;
 @property (strong, nonatomic)  NSNumber *offset;
-@property (strong, nonatomic)  NSNumber *category;
 @property (strong, nonatomic) UIActivityIndicatorView *downloadActivityIndicator;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
 
 @end
 
@@ -53,6 +53,9 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
     [super viewDidLoad];
     [self setTitle:@"Завантаження..."];
     
+    [self.revealButtonItem setTarget: self.revealViewController];
+    [self.revealButtonItem setAction: @selector( revealToggle: )];
+    [self.view addGestureRecognizer: self.revealViewController.panGestureRecognizer];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh:)
                   forControlEvents:UIControlEventValueChanged];
@@ -77,7 +80,7 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
         if ([self.dataSource count])[self.myCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
-    [self refreshDataFromServerWithCategory:nil andOffset:nil completionBlock:^(bool succeeded) {
+    [self refreshDataFromServerWithCategory:self.category andOffset:self.offset completionBlock:^(bool succeeded) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
