@@ -28,7 +28,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="cellid" id="Q04-Gm-19h" customClass="MyCustomCell">
-                                        <rect key="frame" x="6" y="5" width="309" height="60"/>
+                                        <rect key="frame" x="6" y="69" width="309" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="309" height="60"/>
@@ -41,7 +41,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="236" translatesAutoresizingMaskIntoConstraints="NO" id="IKo-0H-ifM">
-                                                    <rect key="frame" x="68" y="4" width="236" height="40"/>
+                                                    <rect key="frame" x="68" y="0.0" width="236" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="sbs-zC-p37"/>
                                                     </constraints>
@@ -50,16 +50,16 @@
                                                     <size key="shadowOffset" width="1" height="-1"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbb-KW-Pwp">
-                                                    <rect key="frame" x="68" y="48" width="21" height="10"/>
+                                                    <rect key="frame" x="68" y="44" width="29" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbG-cd-XNM">
-                                                    <rect key="frame" x="219" y="46" width="70" height="12"/>
+                                                    <rect key="frame" x="175" y="42" width="114" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -68,7 +68,7 @@
                                         </view>
                                         <color key="backgroundColor" red="0.90196078431372551" green="0.94901960784313721" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="IKo-0H-ifM" firstAttribute="top" secondItem="Q04-Gm-19h" secondAttribute="top" constant="4" id="6Gi-ej-qJF"/>
+                                            <constraint firstItem="IKo-0H-ifM" firstAttribute="top" secondItem="Q04-Gm-19h" secondAttribute="top" id="6Gi-ej-qJF"/>
                                             <constraint firstItem="X3L-oN-mAb" firstAttribute="top" secondItem="Q04-Gm-19h" secondAttribute="top" id="ORX-mA-qAb"/>
                                             <constraint firstAttribute="bottom" secondItem="X3L-oN-mAb" secondAttribute="bottom" id="VRr-CK-Lxf"/>
                                             <constraint firstItem="IKo-0H-ifM" firstAttribute="leading" secondItem="X3L-oN-mAb" secondAttribute="trailing" constant="8" symbolic="YES" id="dBQ-xT-jam"/>
@@ -87,7 +87,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footer" id="jMo-5e-Jwf">
-                                    <rect key="frame" x="0.0" y="70" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="134" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <connections>
@@ -123,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sP8-m2-9An" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-517" y="383"/>
+            <point key="canvasLocation" x="-297" y="16"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="8wp-2R-kTF">
@@ -337,7 +337,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqE-gy-TPW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-995" y="383"/>
+            <point key="canvasLocation" x="-995" y="299"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="orp-Dz-rfF">
@@ -393,7 +393,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-103" y="383"/>
+            <point key="canvasLocation" x="117" y="16"/>
         </scene>
     </scenes>
     <resources>
@@ -406,6 +406,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="U9B-FZ-ybY"/>
+        <segue reference="s5B-ed-Z0e"/>
     </inferredMetricsTieBreakers>
 </document>

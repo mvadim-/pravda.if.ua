@@ -107,7 +107,6 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
         completionBlock(YES);
     } failure:^(NSError *error) {
         [self.refreshControl endRefreshing];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self setTitle:@"Помилка"];
         NSString *errorString   = [NSString stringWithFormat:@"%@.\nСпробуйте оновити данні.",[error localizedDescription]];
         UIAlertView* alert      = [[UIAlertView alloc] initWithTitle:@"Щось трапилось:" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
