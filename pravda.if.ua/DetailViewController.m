@@ -125,7 +125,7 @@
     browser.alwaysShowControls      = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
     browser.enableGrid              = YES;   // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
     browser.startOnGrid             = YES; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
-    browser.wantsFullScreenLayout   = YES; // iOS 5 & 6 only: Decide if you want the photo browser full screen, i.e. whether the status bar is affected (defaults to YES)
+  //  browser.wantsFullScreenLayout   = YES; // iOS 5 & 6 only: Decide if you want the photo browser full screen, i.e. whether the status bar is affected (defaults to YES)
     
     // Optionally set the current visible photo before displaying
     [browser setCurrentPhotoIndex:[photos count]];

@@ -52,7 +52,6 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
 {
     [super viewDidLoad];
     [self setTitle:@"Завантаження..."];
-    
     [self.revealButtonItem setTarget: self.revealViewController];
     [self.revealButtonItem setAction: @selector( revealToggle: )];
     [self.view addGestureRecognizer: self.revealViewController.panGestureRecognizer];
