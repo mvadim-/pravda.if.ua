@@ -69,7 +69,10 @@
     if ([elementName isEqualToString:@"item"] || [elementName isEqualToString:@"entry"]) {
         currentItem = [[RSSItem alloc] init];
     }
-    
+    if (currentItem && [elementName isEqualToString:@"enclosure"]) {
+        NSString *urlValue=[attributeDict valueForKey:@"url"];
+        [currentItem setEnclosure:urlValue];
+    }
     tmpString = [[NSMutableString alloc] init];
     
 }
@@ -86,9 +89,6 @@
         }
         if ([elementName isEqualToString:@"category"]) {
             [currentItem setCategory:tmpString];
-        }
-        if ([elementName isEqualToString:@"enclosure"]) {
-            [currentItem setEnclosure:tmpString];
         }
         
         if ([elementName isEqualToString:@"description"]) {
