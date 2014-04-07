@@ -65,10 +65,12 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
     [self refresh:nil];
 }
 
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
+#pragma mark -
+#pragma mark Interface Orientation
+
+- (NSUInteger)supportedInterfaceOrientations{return UIInterfaceOrientationMaskPortrait;}
+
+- (BOOL)shouldAutorotate {return NO;}
 
 - (IBAction)refresh:(UIBarButtonItem *)sender
 {

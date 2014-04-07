@@ -24,6 +24,7 @@
     }
     return self;
 }
+
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
     if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {

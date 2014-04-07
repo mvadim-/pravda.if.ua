@@ -20,12 +20,14 @@
 /**
  *  Add different orientation support
  */
-//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{NSUInteger orientations =UIInterfaceOrientationMaskAllButUpsideDown;
-//    if(self.window.rootViewController){
-//        UIViewController *presentedViewController = [[(UINavigationController *)self.window.rootViewController viewControllers] lastObject];
-//        orientations = [presentedViewController supportedInterfaceOrientations];
+//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window  {
+//    
+//    
+//    if( [self.window.rootViewController.navigationController supportedInterfaceOrientations]!=0)
+//    {
+//        return [self.window.rootViewController supportedInterfaceOrientations];
 //    }
-//    return orientations;
+//    return UIInterfaceOrientationMaskAll;
 //}
 
 - (void)applicationWillResignActive:(UIApplication *)application
