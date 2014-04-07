@@ -755,6 +755,10 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     // want the default behavior.
     return [super supportedInterfaceOrientations];
 }
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
 
 - (BOOL)shouldAutorotate {return NO;}
 //// Support for earlier than iOS 6.0

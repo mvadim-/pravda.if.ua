@@ -116,7 +116,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B765D521172E5C0A00973238 /* pravda.if.ua.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pravda.if.ua.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B765D521172E5C0A00973238 /* Правда.if.ua.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Правда.if.ua.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B765D524172E5C0A00973238 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B765D526172E5C0A00973238 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B765D528172E5C0A00973238 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -346,7 +346,7 @@
 		B765D522172E5C0A00973238 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B765D521172E5C0A00973238 /* pravda.if.ua.app */,
+				B765D521172E5C0A00973238 /* Правда.if.ua.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -715,7 +715,7 @@
 			);
 			name = pravda.if.ua;
 			productName = pravda.if.ua;
-			productReference = B765D521172E5C0A00973238 /* pravda.if.ua.app */;
+			productReference = B765D521172E5C0A00973238 /* Правда.if.ua.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -733,7 +733,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B765D51C172E5C0A00973238 /* Build configuration list for PBXProject "pravda.if.ua" */;
+			buildConfigurationList = B765D51C172E5C0A00973238 /* Build configuration list for PBXProject "Правда.if.ua" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -963,9 +963,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pravda.if.ua/pravda.if.ua-Prefix.pch";
 				INFOPLIST_FILE = "pravda.if.ua/pravda.if.ua-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Правда.if.ua";
 				PROVISIONING_PROFILE = "1FA22958-1BE7-4E21-9CFB-D3E730B3D5E4";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "armv7 armv7s";
@@ -984,9 +984,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pravda.if.ua/pravda.if.ua-Prefix.pch";
 				INFOPLIST_FILE = "pravda.if.ua/pravda.if.ua-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Правда.if.ua";
 				PROVISIONING_PROFILE = "1FA22958-1BE7-4E21-9CFB-D3E730B3D5E4";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "armv7 armv7s";
@@ -997,7 +997,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B765D51C172E5C0A00973238 /* Build configuration list for PBXProject "pravda.if.ua" */ = {
+		B765D51C172E5C0A00973238 /* Build configuration list for PBXProject "Правда.if.ua" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B765D542172E5C0A00973238 /* Debug */,
