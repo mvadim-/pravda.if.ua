@@ -87,6 +87,9 @@
         if ([elementName isEqualToString:@"category"]) {
             [currentItem setCategory:tmpString];
         }
+        if ([elementName isEqualToString:@"enclosure"]) {
+            [currentItem setEnclosure:tmpString];
+        }
         
         if ([elementName isEqualToString:@"description"]) {
             [currentItem setItemDescription:tmpString];

@@ -12,6 +12,7 @@
 
 @property (strong,nonatomic) NSString *title;
 @property (strong,nonatomic) NSString *category;
+@property (strong,nonatomic) NSString *enclosure;
 
 @property (strong,nonatomic) NSString *itemDescription;
 @property (strong,nonatomic) NSString *content;

@@ -40,8 +40,8 @@
     //hide toolbar
     self.toolbar.alpha = 0;
     
-    NSNumber *textSize = [[NSUserDefaults standardUserDefaults] objectForKey:@"sliderValue"];
-    self.textSlider.value = textSize ? [textSize floatValue] : 1.5;
+    NSNumber *sliderValue = [[NSUserDefaults standardUserDefaults] objectForKey:@"sliderValue"];
+    self.textSlider.value = sliderValue ? [sliderValue floatValue] : 1.5;
     self.textSize = [[UIBarButtonItem alloc] initWithTitle:@"aA" style:UIBarButtonItemStylePlain  target:self action:@selector(showToolbar)];
     
     [self.navigationItem setRightBarButtonItems:@[self.shareButton,self.textSize] animated:YES ];
