@@ -29,32 +29,38 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    NSNumber *textSize = [[NSUserDefaults standardUserDefaults] objectForKey:@"sliderValue"];
-    
-    self.textSlider.value = textSize ? [textSize floatValue] : 1.5;
-    
-    self.textSize = [[UIBarButtonItem alloc] initWithTitle:@"aA" style:UIBarButtonItemStylePlain  target:self action:@selector(showToolbar)];
-    
-    [self.navigationItem setRightBarButtonItems:@[self.shareButton,self.textSize] animated:YES ];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSString *html          = [NSString stringWithFormat: @"http://pravda.if.ua/print.php?id=%@",
-                               [self searchNewsNumberInLink:[self.rssItem.link absoluteString]]];
-    NSURLRequest *request   = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:html]];
    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSlider)];
-    tap.numberOfTapsRequired = 1;
-    tap.delegate = self;
-    
-    [self.descriptionView addGestureRecognizer:tap];
-    [self.descriptionView loadRequest:request];
-    self.descriptionView.scrollView.showsVerticalScrollIndicator = NO;
-    self.descriptionView.scrollView.delegate = self;
 }
 
 -(void)loadView
 {
     [super loadView];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //hide toolbar
     self.toolbar.alpha = 0;
+    
+    NSNumber *textSize = [[NSUserDefaults standardUserDefaults] objectForKey:@"sliderValue"];
+    self.textSlider.value = textSize ? [textSize floatValue] : 1.5;
+    self.textSize = [[UIBarButtonItem alloc] initWithTitle:@"aA" style:UIBarButtonItemStylePlain  target:self action:@selector(showToolbar)];
+    
+    [self.navigationItem setRightBarButtonItems:@[self.shareButton,self.textSize] animated:YES ];
+    
+    [self webViewSetup];
+}
+
+-(void)webViewSetup
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSlider)];
+    tap.numberOfTapsRequired = 1;
+    tap.delegate = self;
+    NSString *html          = [NSString stringWithFormat: @"http://pravda.if.ua/print.php?id=%@",
+                               [self searchNewsNumberInLink:[self.rssItem.link absoluteString]]];
+    NSURLRequest *request   = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:html]];
+    [self.descriptionView addGestureRecognizer:tap];
+    [self.descriptionView loadRequest:request];
+    self.descriptionView.scrollView.showsVerticalScrollIndicator = NO;
+    self.descriptionView.scrollView.delegate = self;
 }
 
 -(void)showToolbar
@@ -131,7 +137,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     NSString *jsBody    = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
-                           [textSize intValue]];
+                            [textSize intValue]];
     NSString *jsTitle   = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('h1')[0].style.webkitTextSizeAdjust= '%d%%'",
                            200];
     [self.descriptionView stringByEvaluatingJavaScriptFromString:jsBody];
