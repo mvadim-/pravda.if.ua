@@ -100,6 +100,7 @@
 		D950474818F01D7900F280F7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D950474718F01D7900F280F7 /* MapKit.framework */; };
 		D96CDCD318E9F0A9006B1617 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D96CDCD018E9F0A9006B1617 /* RSSItem.m */; };
 		D96CDCD418E9F0A9006B1617 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D96CDCD218E9F0A9006B1617 /* RSSParser.m */; };
+		D975CC1518F47ABF005879E5 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = D975CC1418F47ABF005879E5 /* API.m */; };
 		D987077B18EA814100B2CC72 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D987077A18EA814100B2CC72 /* QuartzCore.framework */; };
 		D9D4FBD618F181E300F0DE50 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4FBD518F181E300F0DE50 /* SWRevealViewController.m */; };
 		D9D4FBD918F1823600F0DE50 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4FBD818F1823600F0DE50 /* MenuTableViewController.m */; };
@@ -286,6 +287,8 @@
 		D96CDCD018E9F0A9006B1617 /* RSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItem.m; sourceTree = "<group>"; };
 		D96CDCD118E9F0A9006B1617 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
 		D96CDCD218E9F0A9006B1617 /* RSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSParser.m; sourceTree = "<group>"; };
+		D975CC1318F47ABF005879E5 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
+		D975CC1418F47ABF005879E5 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		D987077A18EA814100B2CC72 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D9D4FBD418F181E300F0DE50 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		D9D4FBD518F181E300F0DE50 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -675,6 +678,8 @@
 			isa = PBXGroup;
 			children = (
 				D93E56BF1733D95B006BE11B /* RSSParser */,
+				D975CC1318F47ABF005879E5 /* API.h */,
+				D975CC1418F47ABF005879E5 /* API.m */,
 			);
 			name = Model;
 			path = ..;
@@ -801,6 +806,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9150B2718EFE81800855BC0 /* AFSecurityPolicy.m in Sources */,
+				D975CC1518F47ABF005879E5 /* API.m in Sources */,
 				D950471E18F01D5400F280F7 /* MWPhotoBrowser.m in Sources */,
 				D950471B18F01D5400F280F7 /* MWGridCell.m in Sources */,
 				D950473B18F01D5400F280F7 /* SDWebImageDownloaderOperation.m in Sources */,

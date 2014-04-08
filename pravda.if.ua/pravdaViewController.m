@@ -6,13 +6,12 @@
 //  Copyright (c) 2013 MDG. All rights reserved.
 //
 
-static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
 
 #import "pravdaViewController.h"
 #import "MyCustomCell.h"
 #import "DetailViewController.h"
 #include "UIImageView+AFNetworking.h"
-#import "RSSParser.h"
+#import "API.h"
 #import "RSSItem.h"
 #import "MBProgressHUD.h"
 
@@ -31,6 +30,7 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
 @end
 
 @implementation pravdaViewController
+
 -(NSMutableArray *)dataSource
 {
     if (!_dataSource) {
@@ -38,6 +38,7 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
     }
     return _dataSource;
 }
+
 -(UIActivityIndicatorView *)downloadActivityIndicator
 {
     if (!_downloadActivityIndicator) {
@@ -67,10 +68,15 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
 #pragma mark -
 #pragma mark Interface Orientation
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
 
-- (NSUInteger)supportedInterfaceOrientations{return UIInterfaceOrientationMaskPortrait;}
-
-- (BOOL)shouldAutorotate {return NO;}
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
 
 - (IBAction)refresh:(UIBarButtonItem *)sender
 {
@@ -82,38 +88,29 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
         if ([self.dataSource count])[self.myCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
-    [self refreshDataFromServerWithCategory:self.category andOffset:self.offset completionBlock:^(bool succeeded) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
+    [self downloadDataWithCompletion:^(bool succeeded) {}];
 }
 
--(void)refreshDataFromServerWithCategory:(NSNumber *)cat andOffset:(NSNumber *)offset completionBlock:(void(^)(bool succeeded))completionBlock
+-(void)downloadDataWithCompletion:(void(^)(bool succeeded))completion
 {
-    NSString *URL = news_url;
-    if (cat) {
-        //add category to url string
-        URL = [URL stringByAppendingString:[NSString stringWithFormat:@"cat_id=%d",[cat intValue]]];
-    }
-    if (offset) {
-        //add offset to url string
-        URL = [URL stringByAppendingString:[NSString stringWithFormat:@"&offs=%d",[offset intValue]]];
-    }
-    
-    NSURLRequest *req   = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:URL]];
-    [RSSParser parseRSSFeedForRequest:req success:^(NSArray *feedItems) {
+    [[API sharedInstance] refreshDataFromServerWithCategory:self.category andOffset:self.offset completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.refreshControl endRefreshing];
-        [self setTitle:@"Правда.if.ua"];
-        if (!offset){[self.dataSource removeAllObjects];}
-        [self.dataSource addObjectsFromArray: feedItems];
-        if (!offset) {[self.myCollectionView reloadData];}
-        completionBlock(YES);
-    } failure:^(NSError *error) {
-        [self.refreshControl endRefreshing];
-        [self setTitle:@"Помилка"];
-        NSString *errorString   = [NSString stringWithFormat:@"%@.\nСпробуйте оновити данні.",[error localizedDescription]];
-        UIAlertView* alert      = [[UIAlertView alloc] initWithTitle:@"Щось трапилось:" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        completionBlock(NO);
+        if (succeeded) {
+            if (!self.offset){
+                [self.dataSource removeAllObjects];
+            }
+            [self setTitle:@"Правда.if.ua"];
+            [self.dataSource addObjectsFromArray: response];
+            if (!self.offset) {[self.myCollectionView reloadData];}
+            completion(YES);
+        } else{
+            [self setTitle:@"Помилка"];
+            NSString *errorString   = [NSString stringWithFormat:@"%@.\nСпробуйте оновити данні.",[error localizedDescription]];
+            UIAlertView* alert      = [[UIAlertView alloc] initWithTitle:@"Щось трапилось:" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+            completion(NO);
+        }
     }];
 }
 
@@ -150,9 +147,9 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
         spinner.frame                       = CGRectMake(0, 0, 44, 44);
         spinner.center                      = cell.imageInCell.center;
         spinner.hidesWhenStopped            = YES;
-        
         [cell.imageInCell addSubview:spinner];
         [spinner startAnimating];
+        
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:item.enclosure]];
         
         [cell.imageInCell setImageWithURLRequest:request placeholderImage:nil
@@ -160,20 +157,23 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
                                              [spinner stopAnimating];
                                              cell.imageInCell.image = image;
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                             cell.imageInCell.image = [UIImage imageNamed:@"pravda"];
                                              [spinner stopAnimating];
+                                             cell.imageInCell.image = [UIImage imageNamed:@"pravda"];
                                          }];
-        
-        
         
     }   else cell.imageInCell.image = [UIImage imageNamed:@"pravda"];
     //check for last item in collection and insert new value
+    [self addMoreNewsAfterLastRowWithIndexPath:indexPath];
+    return cell;
+}
+-(void)addMoreNewsAfterLastRowWithIndexPath:(NSIndexPath *)indexPath
+{
     if (indexPath.row == ([self.dataSource count]-1))
     {
         int offset  = [self.offset intValue];
         self.offset = [NSNumber numberWithInt:offset+=20];
         [self.downloadActivityIndicator startAnimating];
-        [self refreshDataFromServerWithCategory:self.category andOffset:self.offset completionBlock:^(bool succeeded) {
+        [self downloadDataWithCompletion:^(bool succeeded)  {
             if (succeeded) {
                 [self.downloadActivityIndicator stopAnimating];
                 [self.downloadActivityIndicator removeFromSuperview];
@@ -192,7 +192,6 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
             }
         }];
     }
-    return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)theCollectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)theIndexPath
@@ -208,9 +207,7 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
         self.downloadActivityIndicator.frame = CGRectMake(theView.frame.size.width/2-10, theView.frame.size.height/2-10, 20, 20);
         [theView addSubview:self.downloadActivityIndicator];
     }
-    
     return theView;
-    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
