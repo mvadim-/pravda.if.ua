@@ -67,6 +67,7 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
 #pragma mark -
 #pragma mark Interface Orientation
 
+
 - (NSUInteger)supportedInterfaceOrientations{return UIInterfaceOrientationMaskPortrait;}
 
 - (BOOL)shouldAutorotate {return NO;}
@@ -143,7 +144,7 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
         cell.dateLable.text             = date_string;
     }
     
-    if ([[item imagesFromItemDescription] count])
+    if (item.enclosure)
     {
         UIActivityIndicatorView *spinner    = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         spinner.frame                       = CGRectMake(0, 0, 44, 44);
@@ -152,7 +153,7 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
         
         [cell.imageInCell addSubview:spinner];
         [spinner startAnimating];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[item.imagesFromItemDescription objectAtIndex:0]]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:item.enclosure]];
         
         [cell.imageInCell setImageWithURLRequest:request placeholderImage:nil
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
