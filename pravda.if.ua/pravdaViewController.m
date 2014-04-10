@@ -65,6 +65,28 @@
     [self refresh:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector( appActivated: )
+                                                 name: UIApplicationDidBecomeActiveNotification
+                                               object: nil];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self ];
+}
+
+
+- (void)appActivated:(NSNotification *)note
+{
+    [self refresh:nil];
+}
 #pragma mark -
 #pragma mark Interface Orientation
 
@@ -88,20 +110,25 @@
         if ([self.dataSource count])[self.myCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
-    [self downloadDataWithCompletion:^(bool succeeded) {}];
+    [self downloadDataWithCompletion:^(bool succeeded)
+     {
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+     }];
 }
 
 -(void)downloadDataWithCompletion:(void(^)(bool succeeded))completion
 {
+    
     [[API sharedInstance] refreshDataFromServerWithCategory:self.category andOffset:self.offset completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.refreshControl endRefreshing];
         if (succeeded) {
             if (!self.offset){
                 [self.dataSource removeAllObjects];
             }
+            
             [self setTitle:@"Правда.if.ua"];
             [self.dataSource addObjectsFromArray: response];
+            [self lastNewsDate:[(RSSItem *)[self.dataSource firstObject] pubDate]];
             if (!self.offset) {[self.myCollectionView reloadData];}
             completion(YES);
         } else{
@@ -113,6 +140,15 @@
         }
     }];
 }
+-(void)lastNewsDate:(NSDate *)date
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:date forKey:@"lastUpdateTime"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -163,35 +199,35 @@
         
     }   else cell.imageInCell.image = [UIImage imageNamed:@"pravda"];
     //check for last item in collection and insert new value
-    [self addMoreNewsAfterLastRowWithIndexPath:indexPath];
+    if (indexPath.row == ([self.dataSource count]-1))
+    {
+        [self addMoreNewsAfterLastRowWithIndexPath:indexPath];
+    }
     return cell;
 }
 -(void)addMoreNewsAfterLastRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == ([self.dataSource count]-1))
-    {
-        int offset  = [self.offset intValue];
-        self.offset = [NSNumber numberWithInt:offset+=20];
-        [self.downloadActivityIndicator startAnimating];
-        [self downloadDataWithCompletion:^(bool succeeded)  {
-            if (succeeded) {
-                [self.downloadActivityIndicator stopAnimating];
-                [self.downloadActivityIndicator removeFromSuperview];
-                
-                //update collection view with new news
-                
-                [self.myCollectionView performBatchUpdates:^{
-                    NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
-                    NSUInteger resultsSize              = [self.dataSource count];
-                    NSInteger numberOfNewsInList        = 20;
-                    for (int i = resultsSize - numberOfNewsInList; i < resultsSize ; i++){
-                        [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-                    }
-                    [self.myCollectionView insertItemsAtIndexPaths:arrayWithIndexPaths];
-                } completion:nil];
-            }
-        }];
-    }
+    int offset  = [self.offset intValue];
+    self.offset = [NSNumber numberWithInt:offset+=20];
+    [self.downloadActivityIndicator startAnimating];
+    [self downloadDataWithCompletion:^(bool succeeded)  {
+        if (succeeded) {
+            [self.downloadActivityIndicator stopAnimating];
+            [self.downloadActivityIndicator removeFromSuperview];
+            
+            //update collection view with new news
+            
+            [self.myCollectionView performBatchUpdates:^{
+                NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
+                NSUInteger resultsSize              = [self.dataSource count];
+                NSInteger numberOfNewsInList        = 20;
+                for (int i = resultsSize - numberOfNewsInList; i < resultsSize ; i++){
+                    [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                }
+                [self.myCollectionView insertItemsAtIndexPaths:arrayWithIndexPaths];
+            } completion:nil];
+        }
+    }];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)theCollectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)theIndexPath

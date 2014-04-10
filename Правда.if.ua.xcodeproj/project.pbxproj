@@ -734,7 +734,7 @@
 				ORGANIZATIONNAME = MDG;
 				TargetAttributes = {
 					B765D520172E5C0A00973238 = {
-						DevelopmentTeam = A2PX8YZMXY;
+						DevelopmentTeam = 8HQ7EC5722;
 					};
 				};
 			};
@@ -909,8 +909,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vadim Maslov (L6EX29X26W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vadim Maslov (L6EX29X26W)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -925,7 +925,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "DB9A4C3C-5C89-4B0B-B08E-C9A8B76F00B1";
+				PROVISIONING_PROFILE = "AE4D8A60-EE49-4052-8BF0-8A7A9DB2550F";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -942,8 +942,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Vadym Maslov (8HQ7EC5722)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Vadym Maslov (8HQ7EC5722)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -952,7 +952,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "DB9A4C3C-5C89-4B0B-B08E-C9A8B76F00B1";
+				PROVISIONING_PROFILE = "136B5F5B-1080-4B94-904D-8BC638F07B9F";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -964,15 +964,15 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Vadym Maslov (W89PJ4CD9F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vadym Maslov (W89PJ4CD9F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vadim Maslov (L6EX29X26W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vadim Maslov (L6EX29X26W)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pravda.if.ua/pravda.if.ua-Prefix.pch";
 				INFOPLIST_FILE = "pravda.if.ua/pravda.if.ua-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Правда.if.ua";
-				PROVISIONING_PROFILE = "1FA22958-1BE7-4E21-9CFB-D3E730B3D5E4";
+				PROVISIONING_PROFILE = "AE4D8A60-EE49-4052-8BF0-8A7A9DB2550F";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -985,15 +985,15 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Vadym Maslov (8HQ7EC5722)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Vadym Maslov (8HQ7EC5722)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pravda.if.ua/pravda.if.ua-Prefix.pch";
 				INFOPLIST_FILE = "pravda.if.ua/pravda.if.ua-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Правда.if.ua";
-				PROVISIONING_PROFILE = "1FA22958-1BE7-4E21-9CFB-D3E730B3D5E4";
+				PROVISIONING_PROFILE = "136B5F5B-1080-4B94-904D-8BC638F07B9F";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
