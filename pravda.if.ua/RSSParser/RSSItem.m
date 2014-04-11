@@ -65,8 +65,7 @@
         _title = [aDecoder decodeObjectForKey:@"title"];
         _category = [aDecoder decodeObjectForKey:@"category"];
         _enclosure = [aDecoder decodeObjectForKey:@"enclosure"];
-
-        
+        _topNews = [aDecoder decodeObjectForKey:@"enclosure"];
         _itemDescription = [aDecoder decodeObjectForKey:@"itemDescription"];
         _content = [aDecoder decodeObjectForKey:@"content"];
         _link = [aDecoder decodeObjectForKey:@"link"];
@@ -85,6 +84,7 @@
     [aCoder encodeObject:self.title forKey:@"title"];
     [aCoder encodeObject:self.category forKey:@"category"];
     [aCoder encodeObject:self.enclosure forKey:@"enclosure"];
+    [aCoder encodeObject:self.topNews forKey:@"topNews"];
     [aCoder encodeObject:self.itemDescription forKey:@"itemDescription"];
     [aCoder encodeObject:self.content forKey:@"content"];
     [aCoder encodeObject:self.link forKey:@"link"];

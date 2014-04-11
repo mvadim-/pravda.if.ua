@@ -167,8 +167,16 @@
     MyCustomCell *cell          = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdent forIndexPath:indexPath];
     cell.imageInCell.image      = nil;
     
-    if([item.title length]) cell.lableInCell.text       = item.title;
-    if([item.category length]) cell.categoryLabel.text  = item.category;
+    if([item.title length])
+    {
+        cell.lableInCell.text = item.title;
+        if ([item.isTopNews boolValue]) {
+            cell.lableInCell.textColor = [UIColor colorWithRed:0.67 green:0.29 blue:0.29 alpha:1];
+        } else  cell.lableInCell.textColor = [UIColor blackColor];
+
+        cell.lableInCell.text = item.title;
+    }
+    if([item.category length]) {cell.categoryLabel.text  = item.category;}
     if (item.pubDate)
     {
         NSDateFormatter * date_format   = [[NSDateFormatter alloc] init];
@@ -176,7 +184,7 @@
         NSString * date_string          = [date_format stringFromDate: item.pubDate];
         cell.dateLable.text             = date_string;
     }
-    
+
     if (item.enclosure)
     {
         UIActivityIndicatorView *spinner    = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];

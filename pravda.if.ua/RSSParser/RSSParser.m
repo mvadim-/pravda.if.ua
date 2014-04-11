@@ -91,6 +91,10 @@
             [currentItem setCategory:tmpString];
         }
         
+        if ([elementName isEqualToString:@"topNews"]) {
+            [currentItem setTopNews:tmpString];
+        }
+        
         if ([elementName isEqualToString:@"description"]) {
             [currentItem setItemDescription:tmpString];
         }
