@@ -29,4 +29,8 @@
 
 }
 
+- (void)animateFade
+{
+    
+}
 @end

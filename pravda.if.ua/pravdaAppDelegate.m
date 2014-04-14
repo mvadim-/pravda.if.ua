@@ -23,8 +23,10 @@
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     if ([[AFNetworkReachabilityManager sharedManager] isReachable])
     {
+        [[API sharedInstance]setLastUpdateDate:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]] ;
         [[API sharedInstance] refreshDataFromServerWithCategory:nil andOffset:nil completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
             if (succeeded) {
                 NSDate *lastUpdateSavedTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastUpdateTime"];
@@ -37,6 +39,8 @@
             }
         }];
     }
+    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+
 }
 
 -(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions

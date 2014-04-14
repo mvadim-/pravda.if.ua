@@ -10,6 +10,9 @@
 
 @interface API : NSObject
 
+@property (nonatomic, strong) NSNumber *lastUpdateDate;
+
 -(void)refreshDataFromServerWithCategory:(NSNumber *)cat andOffset:(NSNumber *)offset completionBlock:(void(^)(NSArray *response ,bool succeeded,NSError *error))completionBlock;
+
 + (id)sharedInstance;
 @end

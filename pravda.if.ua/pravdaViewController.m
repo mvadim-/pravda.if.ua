@@ -82,9 +82,17 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self ];
 }
 
-
 - (void)appActivated:(NSNotification *)note
 {
+    //timeInSeconds 15 minutes
+    NSNumber *timeInSeconds = @900;
+    NSNumber *currentDate = [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]];
+    NSNumber *savedDate = [[API sharedInstance] lastUpdateDate];
+    if ([currentDate doubleValue] - [savedDate doubleValue] > [timeInSeconds doubleValue]) {
+        //reset last background update time
+        [[API sharedInstance]setLastUpdateDate:nil] ;
+    }
+    
     [self refresh:nil];
 }
 #pragma mark -
@@ -104,8 +112,10 @@
 {
     //reset offset if refreshing from pull to refresh or refresh button
     self.offset = nil;
+
     //show refresh hud if refresh buuton taped only
-    if (!self.refreshControl.isRefreshing) {
+    if (!self.refreshControl.isRefreshing)
+    {
         //Collection view scroll to top
         if ([self.dataSource count])[self.myCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -118,14 +128,14 @@
 
 -(void)downloadDataWithCompletion:(void(^)(bool succeeded))completion
 {
-    
     [[API sharedInstance] refreshDataFromServerWithCategory:self.category andOffset:self.offset completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
         [self.refreshControl endRefreshing];
         if (succeeded) {
             if (!self.offset){
                 [self.dataSource removeAllObjects];
             }
-            
+            //reset last background update time
+            [[API sharedInstance]setLastUpdateDate:nil] ;
             [self setTitle:@"Правда.if.ua"];
             [self.dataSource addObjectsFromArray: response];
             [self lastNewsDate:[(RSSItem *)[self.dataSource firstObject] pubDate]];
@@ -193,12 +203,12 @@
         spinner.hidesWhenStopped            = YES;
         [cell.imageInCell addSubview:spinner];
         [spinner startAnimating];
-        
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:item.enclosure]];
         
         [cell.imageInCell setImageWithURLRequest:request placeholderImage:nil
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                              [spinner stopAnimating];
+                                             
                                              cell.imageInCell.image = image;
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                              [spinner stopAnimating];
@@ -213,6 +223,7 @@
     }
     return cell;
 }
+
 -(void)addMoreNewsAfterLastRowWithIndexPath:(NSIndexPath *)indexPath
 {
     int offset  = [self.offset intValue];
