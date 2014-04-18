@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RSSItem.h"
+
 @interface DetailViewController : UIViewController
 
 @property (nonatomic,strong) RSSItem *rssItem;

@@ -87,16 +87,9 @@
 
 - (void)appActivated:(NSNotification *)note
 {
-    //timeInSeconds 15 minutes
-    NSNumber *timeInSeconds = @900;
-    NSNumber *currentDate   = [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]];
-    NSNumber *savedDate     = [[API sharedInstance] lastUpdateDate];
-    if ([currentDate doubleValue] - [savedDate doubleValue] > [timeInSeconds doubleValue]) {
-        //reset last background update time
-        [[API sharedInstance]setLastUpdateDate:nil] ;
+    if ([[API sharedInstance] isUpdatetInBackground]) {
+        [self refresh:nil];
     }
-    
-    [self refresh:nil];
 }
 #pragma mark -
 #pragma mark Interface Orientation
@@ -134,11 +127,11 @@
     [[API sharedInstance] refreshDataFromServerWithCategory:self.category andOffset:self.offset completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
         [self.refreshControl endRefreshing];
         if (succeeded) {
+            [[API sharedInstance] setUpdatedInBackground:NO];
             if (!self.offset){
                 [self.dataSource removeAllObjects];
             }
             //reset last background update time
-            [[API sharedInstance]setLastUpdateDate:nil] ;
             [self setTitle:@"Правда.if.ua"];
             [self.dataSource addObjectsFromArray: response];
             [self lastNewsDate:[(RSSItem *)[self.dataSource firstObject] pubDate]];
@@ -173,7 +166,8 @@
     return [self.dataSource count];
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                 cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UIImage *defaultImage = [UIImage imageNamed:@"pravda"];
     
@@ -225,6 +219,7 @@
 
 -(void)addMoreNewsAfterLastRowWithIndexPath:(NSIndexPath *)indexPath
 {
+    //download nex 20 news
     int offset  = [self.offset intValue];
     self.offset = [NSNumber numberWithInt:offset+=20];
     [self.downloadActivityIndicator startAnimating];

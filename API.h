@@ -10,7 +10,7 @@
 
 @interface API : NSObject
 
-@property (nonatomic, strong) NSNumber *lastUpdateDate;
+@property (nonatomic, getter = isUpdatetInBackground) BOOL updatedInBackground;
 
 -(void)refreshDataFromServerWithCategory:(NSNumber *)cat andOffset:(NSNumber *)offset completionBlock:(void(^)(NSArray *response ,bool succeeded,NSError *error))completionBlock;
 

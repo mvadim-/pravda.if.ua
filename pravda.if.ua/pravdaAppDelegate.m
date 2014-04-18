@@ -16,7 +16,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"Launched in background %d", UIApplicationStateBackground == application.applicationState);
     // Override point for customization after application launch.
     return YES;
 }
@@ -26,14 +25,13 @@
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     if ([[AFNetworkReachabilityManager sharedManager] isReachable])
     {
-
-        [[API sharedInstance]setLastUpdateDate:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]] ;
         [[API sharedInstance] refreshDataFromServerWithCategory:nil andOffset:nil completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
             if (succeeded) {
                 NSDate *lastUpdateSavedTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastUpdateTime"];
                 NSDate *lastUpdateTime = [(RSSItem *)[response firstObject] pubDate];
                 if ([lastUpdateSavedTime compare: lastUpdateTime] != NSOrderedSame) {
-                    NSLog(@"Application updated in background");
+                   // NSLog(@"Application updated in background");
+                    [[API sharedInstance] setUpdatedInBackground:YES];
                     [UIApplication sharedApplication].applicationIconBadgeNumber = 1;
                     completionHandler(UIBackgroundFetchResultNewData);
                 }else  completionHandler(UIBackgroundFetchResultNoData);
@@ -41,7 +39,6 @@
         }];
     }
     [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
-
 }
 
 -(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions

@@ -383,7 +383,6 @@
 		B765D52A172E5C0A00973238 /* pravda.if.ua */ = {
 			isa = PBXGroup;
 			children = (
-				B788C5E918FEC94000C4F31D /* iPad */,
 				D9D4FBD218F181AD00F0DE50 /* Model */,
 				D9D4FBD118F1819E00F0DE50 /* View */,
 				D9D4FBD018F1819500F0DE50 /* Controller */,
@@ -406,13 +405,6 @@
 				B765D532172E5C0A00973238 /* pravda.if.ua-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B788C5E918FEC94000C4F31D /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
 			sourceTree = "<group>";
 		};
 		D9150AEE18EFE57C00855BC0 /* AFNetworking */ = {

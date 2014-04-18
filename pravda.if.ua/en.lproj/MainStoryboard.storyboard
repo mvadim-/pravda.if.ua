@@ -82,6 +82,7 @@
                                             <constraint firstItem="vbb-KW-Pwp" firstAttribute="leading" secondItem="XUk-6F-Ix2" secondAttribute="trailing" constant="12" id="qOf-qM-n5U"/>
                                             <constraint firstAttribute="trailing" secondItem="IKo-0H-ifM" secondAttribute="trailing" constant="5" id="unO-Mm-kqo"/>
                                         </constraints>
+                                        <size key="customSize" width="309" height="90"/>
                                         <connections>
                                             <outlet property="categoryLabel" destination="vbb-KW-Pwp" id="y6F-Rf-wBr"/>
                                             <outlet property="dateLable" destination="EbG-cd-XNM" id="YPH-S0-mXx"/>

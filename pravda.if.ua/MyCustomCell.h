@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "cellImageView.h"
+
 @interface MyCustomCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *lableInCell;

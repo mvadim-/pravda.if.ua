@@ -13,7 +13,9 @@
 #import "UIWebView+AFNetworking.h"
 #import "MWPhotoBrowser.h"
 
-@interface DetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,MWPhotoBrowserDelegate>
+@interface DetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,MWPhotoBrowserDelegate>{
+MBProgressHUD *HUD;
+}
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 @property (strong, nonatomic) UIBarButtonItem *textSize;
@@ -33,7 +35,7 @@
 {
     [super loadView];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+   // [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     //hide toolbar
     self.toolbar.alpha = 0;
     
@@ -48,6 +50,9 @@
 
 -(void)webViewSetup
 {
+    HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES] ;
+    HUD.mode = MBProgressHUDModeIndeterminate;
+	HUD.labelText = @"Завантаження...";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSlider)];
     tap.numberOfTapsRequired = 1;
     tap.delegate = self;
@@ -55,7 +60,16 @@
                                [self searchNewsNumberInLink:[self.rssItem.link absoluteString]]];
     NSURLRequest *request   = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:html]];
     [self.descriptionView addGestureRecognizer:tap];
-    [self.descriptionView loadRequest:request];
+    [self.descriptionView loadRequest:request progress:^(NSUInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite) {
+
+    } success:^NSString *(NSHTTPURLResponse *response, NSString *HTML) {
+        [HUD hide:YES];
+
+        return HTML;
+    } failure:^(NSError *error) {
+        HUD.mode = MBProgressHUDModeText;
+        HUD.labelText = [NSString stringWithFormat:@"%@",[error localizedDescription]];
+    }];
     self.descriptionView.scrollView.showsVerticalScrollIndicator = NO;
     self.descriptionView.scrollView.delegate = self;
 }
@@ -82,6 +96,7 @@
         
     }
 }
+
 - (IBAction)changeTextSize:(UISlider *)sender
 {
     NSNumber *textsize = [NSNumber numberWithInt:sender.value * 267];
@@ -134,7 +149,7 @@
         textSize = @400;
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+  //  [MBProgressHUD hideHUDForView:self.view animated:YES];
     NSString *jsBody    = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
                             [textSize intValue]];
     NSString *jsTitle   = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('h1')[0].style.webkitTextSizeAdjust= '%d%%'",
