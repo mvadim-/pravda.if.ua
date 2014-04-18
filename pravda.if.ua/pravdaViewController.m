@@ -43,8 +43,8 @@
 {
     if (!_downloadActivityIndicator) {
         _downloadActivityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        _downloadActivityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-        _downloadActivityIndicator.hidesWhenStopped = YES;
+        _downloadActivityIndicator.activityIndicatorViewStyle   = UIActivityIndicatorViewStyleGray;
+        _downloadActivityIndicator.hidesWhenStopped             = YES;
     }
     return _downloadActivityIndicator;
 }
@@ -56,7 +56,7 @@
     [self.revealButtonItem setTarget: self.revealViewController];
     [self.revealButtonItem setAction: @selector( revealToggle: )];
     [self.view addGestureRecognizer: self.revealViewController.panGestureRecognizer];
-    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl                 = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh:)
                   forControlEvents:UIControlEventValueChanged];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
@@ -86,8 +86,8 @@
 {
     //timeInSeconds 15 minutes
     NSNumber *timeInSeconds = @900;
-    NSNumber *currentDate = [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]];
-    NSNumber *savedDate = [[API sharedInstance] lastUpdateDate];
+    NSNumber *currentDate   = [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]];
+    NSNumber *savedDate     = [[API sharedInstance] lastUpdateDate];
     if ([currentDate doubleValue] - [savedDate doubleValue] > [timeInSeconds doubleValue]) {
         //reset last background update time
         [[API sharedInstance]setLastUpdateDate:nil] ;
@@ -150,15 +150,13 @@
         }
     }];
 }
+
 -(void)lastNewsDate:(NSDate *)date
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:date forKey:@"lastUpdateTime"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
-
-
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {

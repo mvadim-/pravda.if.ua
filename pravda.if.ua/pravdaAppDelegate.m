@@ -34,7 +34,7 @@
                 NSDate *lastUpdateTime = [(RSSItem *)[response firstObject] pubDate];
                 if ([lastUpdateSavedTime compare: lastUpdateTime] != NSOrderedSame) {
                     NSLog(@"Application updated in background");
-                    [UIApplication sharedApplication].applicationIconBadgeNumber = 1;
+                    [UIApplication sharedApplication].applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber+1;
                     completionHandler(UIBackgroundFetchResultNewData);
                 }else  completionHandler(UIBackgroundFetchResultNoData);
             }
