@@ -31,6 +31,7 @@
 
 @implementation pravdaViewController
 
+#pragma mark - Lazy instantiation
 -(NSMutableArray *)dataSource
 {
     if (!_dataSource) {
@@ -48,6 +49,8 @@
     }
     return _downloadActivityIndicator;
 }
+
+#pragma mark - ViewController life cycle
 
 - (void)viewDidLoad
 {
@@ -158,6 +161,8 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+#pragma mark - Collection View
+
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -198,7 +203,7 @@
     
     if (item.enclosure)
     {
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:item.enclosure]];        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:item.enclosure]];
         [cell.imageInCell setImageWithURLRequest:request
                                 placeholderImage:nil
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
@@ -258,6 +263,8 @@
     }
     return theView;
 }
+
+#pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

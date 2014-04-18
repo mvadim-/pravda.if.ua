@@ -14,23 +14,20 @@
 #import "MWPhotoBrowser.h"
 
 @interface DetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,MWPhotoBrowserDelegate>
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 @property (strong, nonatomic) UIBarButtonItem *textSize;
-
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIWebView *descriptionView;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTap;
 @property (strong, nonatomic)  NSArray *photos;
 @property (weak, nonatomic) IBOutlet UISlider *textSlider;
+
 @end
 
 @implementation DetailViewController
 
--(void)viewDidLoad
-{
-    [super viewDidLoad];
-   
-}
+#pragma mark - ViewController life cycle
 
 -(void)loadView
 {
@@ -117,6 +114,8 @@
     return number;
 }
 
+#pragma mark - webView
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     webView.scalesPageToFit = YES;//set here
@@ -170,6 +169,8 @@
     }
 }
 
+#pragma mark - MWPhotoBrowser
+
 -(void)loadPhotoBrowserWithArray:(NSMutableArray*)array
 {
     // Create array of MWPhoto objects
@@ -216,12 +217,12 @@
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
 {
-    return self.photos.count;
+    return [self.photos count];
 }
 
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
 {
-    if (index < self.photos.count)
+    if (index < [self.photos count])
         return [self.photos objectAtIndex:index];
     return nil;
 }
