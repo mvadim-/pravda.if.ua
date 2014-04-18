@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "cellImageView.h"
 @interface MyCustomCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageInCell;
 @property (weak, nonatomic) IBOutlet UILabel *lableInCell;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLable;
+@property (weak, nonatomic) IBOutlet cellImageView *imageInCell;
 
 @end

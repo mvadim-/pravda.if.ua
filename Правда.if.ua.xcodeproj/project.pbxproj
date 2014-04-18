@@ -100,6 +100,7 @@
 		D950474818F01D7900F280F7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D950474718F01D7900F280F7 /* MapKit.framework */; };
 		D96CDCD318E9F0A9006B1617 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D96CDCD018E9F0A9006B1617 /* RSSItem.m */; };
 		D96CDCD418E9F0A9006B1617 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D96CDCD218E9F0A9006B1617 /* RSSParser.m */; };
+		D97235B919019B2600FC1E52 /* cellImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97235B819019B2600FC1E52 /* cellImageView.m */; };
 		D975CC1518F47ABF005879E5 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = D975CC1418F47ABF005879E5 /* API.m */; };
 		D987077B18EA814100B2CC72 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D987077A18EA814100B2CC72 /* QuartzCore.framework */; };
 		D9D4FBD618F181E300F0DE50 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4FBD518F181E300F0DE50 /* SWRevealViewController.m */; };
@@ -287,6 +288,8 @@
 		D96CDCD018E9F0A9006B1617 /* RSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItem.m; sourceTree = "<group>"; };
 		D96CDCD118E9F0A9006B1617 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
 		D96CDCD218E9F0A9006B1617 /* RSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSParser.m; sourceTree = "<group>"; };
+		D97235B719019B2600FC1E52 /* cellImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cellImageView.h; sourceTree = "<group>"; };
+		D97235B819019B2600FC1E52 /* cellImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cellImageView.m; sourceTree = "<group>"; };
 		D975CC1318F47ABF005879E5 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		D975CC1418F47ABF005879E5 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		D987077A18EA814100B2CC72 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -678,6 +681,8 @@
 			children = (
 				B765D549172E6D7200973238 /* MyCustomCell.h */,
 				B765D54A172E6D7200973238 /* MyCustomCell.m */,
+				D97235B719019B2600FC1E52 /* cellImageView.h */,
+				D97235B819019B2600FC1E52 /* cellImageView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -870,6 +875,7 @@
 				D950472818F01D5400F280F7 /* PSTCollectionViewController.m in Sources */,
 				D950473818F01D5400F280F7 /* SDWebImageCompat.m in Sources */,
 				D950473518F01D5400F280F7 /* NSData+GIF.m in Sources */,
+				D97235B919019B2600FC1E52 /* cellImageView.m in Sources */,
 				D950473E18F01D5400F280F7 /* UIButton+WebCache.m in Sources */,
 				D96CDCD418E9F0A9006B1617 /* RSSParser.m in Sources */,
 				D9150B1A18EFE57C00855BC0 /* AFURLRequestSerialization.m in Sources */,

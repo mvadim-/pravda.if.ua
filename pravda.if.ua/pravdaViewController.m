@@ -112,7 +112,7 @@
 {
     //reset offset if refreshing from pull to refresh or refresh button
     self.offset = nil;
-
+    
     //show refresh hud if refresh buuton taped only
     if (!self.refreshControl.isRefreshing)
     {
@@ -170,10 +170,13 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    UIImage *defaultImage = [UIImage imageNamed:@"pravda"];
+    
     RSSItem *item               = [self.dataSource objectAtIndex:indexPath.row];
     static NSString *cellIdent  = @"cellid";
+    
     MyCustomCell *cell          = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdent forIndexPath:indexPath];
-    cell.imageInCell.image      = nil;
+    [cell.imageInCell clearImage:defaultImage];
     
     if([item.title length])
     {
@@ -181,7 +184,7 @@
         if ([item.isTopNews boolValue]) {
             cell.lableInCell.textColor = [UIColor colorWithRed:0.67 green:0.29 blue:0.29 alpha:1];
         } else  cell.lableInCell.textColor = [UIColor blackColor];
-
+        
         cell.lableInCell.text = item.title;
     }
     if([item.category length]) {cell.categoryLabel.text  = item.category;}
@@ -192,29 +195,21 @@
         NSString * date_string          = [date_format stringFromDate: item.pubDate];
         cell.dateLable.text             = date_string;
     }
-
+    
     if (item.enclosure)
     {
-        UIActivityIndicatorView *spinner    = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        spinner.frame                       = CGRectMake(0, 0, 44, 44);
-        spinner.center                      = cell.imageInCell.center;
-        spinner.hidesWhenStopped            = YES;
-
-        [cell.imageInCell addSubview:spinner];
-        [spinner startAnimating];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:item.enclosure]];
-        
-        [cell.imageInCell setImageWithURLRequest:request placeholderImage:nil
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:item.enclosure]];        
+        [cell.imageInCell setImageWithURLRequest:request
+                                placeholderImage:nil
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                             [spinner stopAnimating];
-                                             
-                                             cell.imageInCell.image = image;
+                                             if (request == nil && response == nil) {
+                                                 [cell.imageInCell setEventImage:image animated:NO];
+                                             } else [cell.imageInCell setEventImage:image animated:YES];
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                             [spinner stopAnimating];
-                                             cell.imageInCell.image = [UIImage imageNamed:@"pravda"];
+                                             [cell.imageInCell setEventImage:defaultImage animated:NO];
                                          }];
         
-    }   else cell.imageInCell.image = [UIImage imageNamed:@"pravda"];
+    }   else [cell.imageInCell setEventImage:defaultImage animated:NO];
     //check for last item in collection and insert new value
     if (indexPath.row == ([self.dataSource count]-1))
     {

@@ -30,8 +30,5 @@
 
 }
 
-- (void)animateFade
-{
-    
-}
+
 @end

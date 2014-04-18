@@ -38,7 +38,7 @@
                                                     <rect key="frame" x="4" y="4" width="82" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" image="pravda.png" translatesAutoresizingMaskIntoConstraints="NO" id="X3L-oN-mAb">
+                                                        <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" image="pravda.png" translatesAutoresizingMaskIntoConstraints="NO" id="X3L-oN-mAb" customClass="cellImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="82" height="82"/>
                                                         </imageView>
                                                     </subviews>
@@ -86,7 +86,7 @@
                                             <outlet property="categoryLabel" destination="vbb-KW-Pwp" id="y6F-Rf-wBr"/>
                                             <outlet property="dateLable" destination="EbG-cd-XNM" id="YPH-S0-mXx"/>
                                             <outlet property="imageContainer" destination="XUk-6F-Ix2" id="Ypt-9p-upZ"/>
-                                            <outlet property="imageInCell" destination="X3L-oN-mAb" id="0qG-8H-vkK"/>
+                                            <outlet property="imageInCell" destination="X3L-oN-mAb" id="oOx-MT-a6W"/>
                                             <outlet property="lableInCell" destination="IKo-0H-ifM" id="LZb-3M-lCz"/>
                                             <segue destination="r7A-Mp-p9h" kind="push" identifier="showDetail" id="LrO-tD-2zA"/>
                                         </connections>
