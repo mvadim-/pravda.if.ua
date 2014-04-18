@@ -380,6 +380,7 @@
 		B765D52A172E5C0A00973238 /* pravda.if.ua */ = {
 			isa = PBXGroup;
 			children = (
+				B788C5E918FEC94000C4F31D /* iPad */,
 				D9D4FBD218F181AD00F0DE50 /* Model */,
 				D9D4FBD118F1819E00F0DE50 /* View */,
 				D9D4FBD018F1819500F0DE50 /* Controller */,
@@ -402,6 +403,13 @@
 				B765D532172E5C0A00973238 /* pravda.if.ua-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B788C5E918FEC94000C4F31D /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 		D9150AEE18EFE57C00855BC0 /* AFNetworking */ = {
@@ -986,11 +994,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pravda.if.ua/pravda.if.ua-Prefix.pch";
 				INFOPLIST_FILE = "pravda.if.ua/pravda.if.ua-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Правда.if.ua";
 				PROVISIONING_PROFILE = "AE4D8A60-EE49-4052-8BF0-8A7A9DB2550F";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1007,11 +1016,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pravda.if.ua/pravda.if.ua-Prefix.pch";
 				INFOPLIST_FILE = "pravda.if.ua/pravda.if.ua-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Правда.if.ua";
 				PROVISIONING_PROFILE = "015C0CC9-1A24-4902-925F-A6ADCD9C7B24";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

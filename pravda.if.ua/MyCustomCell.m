@@ -8,24 +8,25 @@
 
 #import "MyCustomCell.h"
 
-@implementation MyCustomCell
+@interface MyCustomCell()
 
--(void)setImageInCell:(UIImageView *)imageInCell
-{
-    _imageInCell                = imageInCell;
-    _imageInCell.clipsToBounds  = YES;
-}
+@property (weak, nonatomic) IBOutlet UIView *imageContainer;
+
+@end
+
+@implementation MyCustomCell
 
 -(void)awakeFromNib
 {
-    self.layer.shadowColor      = [UIColor blackColor].CGColor;
-    self.layer.shadowOpacity    = 0.7f;
-    self.layer.shadowOffset     = CGSizeMake(1.0f, 1.0f);
-    self.layer.shadowRadius     = 1.0f;
-    self.layer.masksToBounds    = NO;
-    
-    UIBezierPath *path          = [UIBezierPath bezierPathWithRect:self.bounds];
-    self.layer.shadowPath =     path.CGPath;
+    self.imageInCell.clipsToBounds = YES;
+
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.imageInCell.bounds];
+    self.imageContainer.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.imageContainer.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    self.imageContainer.layer.shadowOpacity = 0.5f;
+    self.imageContainer.layer.shadowRadius = 1.0f;
+
+    self.imageContainer.layer.shadowPath = shadowPath.CGPath;
 
 }
 

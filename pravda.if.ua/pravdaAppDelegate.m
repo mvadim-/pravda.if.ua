@@ -26,6 +26,7 @@
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     if ([[AFNetworkReachabilityManager sharedManager] isReachable])
     {
+
         [[API sharedInstance]setLastUpdateDate:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]] ;
         [[API sharedInstance] refreshDataFromServerWithCategory:nil andOffset:nil completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
             if (succeeded) {

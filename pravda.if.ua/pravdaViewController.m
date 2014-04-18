@@ -201,6 +201,7 @@
         spinner.frame                       = CGRectMake(0, 0, 44, 44);
         spinner.center                      = cell.imageInCell.center;
         spinner.hidesWhenStopped            = YES;
+
         [cell.imageInCell addSubview:spinner];
         [spinner startAnimating];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:item.enclosure]];
@@ -267,11 +268,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"])
-    {
-        NSIndexPath *selectedIndexPath              = [[self.myCollectionView indexPathsForSelectedItems] objectAtIndex:0];
-        DetailViewController *detailViewController  = [segue destinationViewController];
-        detailViewController.rssItem                = [self.dataSource objectAtIndex:selectedIndexPath.row];
+    if ([segue.destinationViewController isKindOfClass:[DetailViewController class]]) {
+        DetailViewController *detailViewController  = segue.destinationViewController;
+        if ([segue.identifier isEqualToString:@"showDetail"])
+        {
+            NSIndexPath *selectedIndexPath              = [[self.myCollectionView indexPathsForSelectedItems] objectAtIndex:0];
+            detailViewController.rssItem                = [self.dataSource objectAtIndex:selectedIndexPath.row];
+        }
     }
 }
 
