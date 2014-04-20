@@ -120,6 +120,9 @@
     }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier forIndexPath: indexPath];
+    UIView * selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+    [selectedBackgroundView setBackgroundColor:[UIColor colorWithRed:0.89 green:0.94 blue:0.89 alpha:0.5]]; // set color here
+    [cell setSelectedBackgroundView:selectedBackgroundView];
     return cell;
 }
 
