@@ -22,6 +22,7 @@
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
+    __block UIBackgroundFetchResult fetchResult = UIBackgroundFetchResultNoData;
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     if ([[AFNetworkReachabilityManager sharedManager] isReachable])
     {
@@ -33,11 +34,13 @@
                    // NSLog(@"Application updated in background");
                     [[API sharedInstance] setUpdatedInBackground:YES];
                     [UIApplication sharedApplication].applicationIconBadgeNumber = 1;
-                    completionHandler(UIBackgroundFetchResultNewData);
-                }else  completionHandler(UIBackgroundFetchResultNoData);
-            }
+                    fetchResult = UIBackgroundFetchResultNewData;
+                }
+            }else fetchResult = UIBackgroundFetchResultFailed;
+
         }];
     }
+    completionHandler(fetchResult);
     [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
 }
 

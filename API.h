@@ -10,7 +10,7 @@
 
 @interface API : NSObject
 
-@property (nonatomic, getter = isUpdatetInBackground) BOOL updatedInBackground;
+@property (nonatomic, getter = isUpdatedInBackground) BOOL updatedInBackground;
 
 -(void)refreshDataFromServerWithCategory:(NSNumber *)cat andOffset:(NSNumber *)offset completionBlock:(void(^)(NSArray *response ,bool succeeded,NSError *error))completionBlock;
 

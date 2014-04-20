@@ -50,19 +50,28 @@
     return _downloadActivityIndicator;
 }
 
+-(UIRefreshControl *)refreshControl
+{
+    if (!_refreshControl) {
+        _refreshControl = [[UIRefreshControl alloc] init];
+        [_refreshControl addTarget:self action:@selector(refresh:)
+                      forControlEvents:UIControlEventValueChanged];
+        _refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Потягніть для оновлення..."];
+    }
+    return _refreshControl;
+}
+
 #pragma mark - ViewController life cycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setTitle:@"Завантаження..."];
+    
     [self.revealButtonItem setTarget: self.revealViewController];
     [self.revealButtonItem setAction: @selector( revealToggle: )];
     [self.view addGestureRecognizer: self.revealViewController.panGestureRecognizer];
-    self.refreshControl                 = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refresh:)
-                  forControlEvents:UIControlEventValueChanged];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+   
     [self.myCollectionView addSubview:self.refreshControl];
     self.myCollectionView.alwaysBounceVertical = YES;
     [self refresh:nil];
@@ -87,7 +96,7 @@
 
 - (void)appActivated:(NSNotification *)note
 {
-    if ([[API sharedInstance] isUpdatetInBackground]) {
+    if ([[API sharedInstance] isUpdatedInBackground]) {
         [self refresh:nil];
     }
 }
