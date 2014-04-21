@@ -10,7 +10,6 @@
 
 @implementation cellImageView
 
-
 - (void)setEventImage:(UIImage*)image animated:(BOOL)animated
 {
     UIActivityIndicatorView *indicator = [[self subviews] lastObject];

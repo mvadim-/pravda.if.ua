@@ -13,6 +13,6 @@
 @property (nonatomic, getter = isUpdatedInBackground) BOOL updatedInBackground;
 
 -(void)refreshDataFromServerWithCategory:(NSNumber *)cat andOffset:(NSNumber *)offset completionBlock:(void(^)(NSArray *response ,bool succeeded,NSError *error))completionBlock;
-
+-(NSString *)categoryNameWithNumber:(NSNumber *)num;
 + (id)sharedInstance;
 @end

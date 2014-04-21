@@ -141,7 +141,7 @@
                 [self.dataSource removeAllObjects];
             }
             //reset last background update time
-            [self setTitle:@"Правда.if.ua"];
+            [self setTitle:[[API sharedInstance] categoryNameWithNumber:self.category ? self.category :@0]];
             [self.dataSource addObjectsFromArray: response];
             [self lastNewsDate:[(RSSItem *)[self.dataSource firstObject] pubDate]];
             if (!self.offset) {[self.myCollectionView reloadData];}
@@ -194,14 +194,6 @@
         } else  cell.lableInCell.textColor = [UIColor blackColor];
         
         cell.lableInCell.text = item.title;
-    }
-    if([item.category length]) {cell.categoryLabel.text  = item.category;}
-    if (item.pubDate)
-    {
-        NSDateFormatter * date_format   = [[NSDateFormatter alloc] init];
-        [date_format setDateFormat:@"MMM dd, HH:mm"];
-        NSString * date_string          = [date_format stringFromDate: item.pubDate];
-        cell.dateLable.text             = date_string;
     }
     
     if (item.enclosure)

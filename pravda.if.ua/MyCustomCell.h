@@ -12,8 +12,6 @@
 @interface MyCustomCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *lableInCell;
-@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLable;
 @property (weak, nonatomic) IBOutlet cellImageView *imageInCell;
 
 @end
