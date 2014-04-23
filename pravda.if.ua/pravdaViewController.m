@@ -196,6 +196,13 @@
         cell.lableInCell.text = item.title;
     }
     
+    if (item.pubDate)
+    {
+        NSDateFormatter * date_format   = [[NSDateFormatter alloc] init];
+        [date_format setDateFormat:@"MMM dd, HH:mm"];
+        NSString * date_string          = [date_format stringFromDate: item.pubDate];
+        cell.dateLable.text             = date_string;
+    }
     if (item.enclosure)
     {
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:item.enclosure]];

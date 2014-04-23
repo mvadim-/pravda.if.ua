@@ -13,5 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lableInCell;
 @property (weak, nonatomic) IBOutlet cellImageView *imageInCell;
+@property (weak, nonatomic) IBOutlet UILabel *dateLable;
 
 @end
