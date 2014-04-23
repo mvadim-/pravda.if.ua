@@ -38,7 +38,7 @@ MBProgressHUD *HUD;
    // [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     //hide toolbar
     self.toolbar.alpha = 0;
-    
+    self.descriptionView.alpha = 0;
     NSNumber *sliderValue = [[NSUserDefaults standardUserDefaults] objectForKey:@"sliderValue"];
     self.textSlider.value = sliderValue ? [sliderValue floatValue] : 1.5;
     self.textSize = [[UIBarButtonItem alloc] initWithTitle:@"aA" style:UIBarButtonItemStylePlain  target:self action:@selector(showToolbar)];
@@ -160,6 +160,9 @@ MBProgressHUD *HUD;
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     // Disable callout
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.descriptionView.alpha = 1;
+    }];
 }
 
 - (IBAction)boubleTap:(UITapGestureRecognizer *)sender

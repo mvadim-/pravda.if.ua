@@ -37,10 +37,10 @@
                     fetchResult = UIBackgroundFetchResultNewData;
                 }
             }else fetchResult = UIBackgroundFetchResultFailed;
+            completionHandler(fetchResult);
 
         }];
     }
-    completionHandler(fetchResult);
     [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
 }
 
