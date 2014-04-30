@@ -220,7 +220,7 @@
     //check for last item in collection and insert new value
     if (indexPath.row == ([self.dataSource count]-1))
     {
-        [self.myCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+       // [self.myCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
         [self addMoreNewsAfterLastRowWithIndexPath:indexPath];
     }
     return cell;

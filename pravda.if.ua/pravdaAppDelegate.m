@@ -22,11 +22,11 @@
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    __block UIBackgroundFetchResult fetchResult = UIBackgroundFetchResultNoData;
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     if ([[AFNetworkReachabilityManager sharedManager] isReachable])
     {
         [[API sharedInstance] refreshDataFromServerWithCategory:nil andOffset:nil completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
+            UIBackgroundFetchResult fetchResult;
             if (succeeded) {
                 NSDate *lastUpdateSavedTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastUpdateTime"];
                 NSDate *lastUpdateTime = [(RSSItem *)[response firstObject] pubDate];
@@ -35,10 +35,9 @@
                     [[API sharedInstance] setUpdatedInBackground:YES];
                     [UIApplication sharedApplication].applicationIconBadgeNumber = 1;
                     fetchResult = UIBackgroundFetchResultNewData;
-                }
+                } else fetchResult = UIBackgroundFetchResultNoData;
             }else fetchResult = UIBackgroundFetchResultFailed;
             completionHandler(fetchResult);
-
         }];
     }
     [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
