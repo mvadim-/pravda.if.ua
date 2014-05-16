@@ -14,7 +14,7 @@
 #import "MWPhotoBrowser.h"
 
 @interface DetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,MWPhotoBrowserDelegate>{
-MBProgressHUD *HUD;
+    MBProgressHUD *HUD;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
@@ -35,13 +35,15 @@ MBProgressHUD *HUD;
 {
     [super loadView];
     
-   // [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     //hide toolbar
-    self.toolbar.alpha = 0;
-    self.descriptionView.alpha = 0;
-    NSNumber *sliderValue = [[NSUserDefaults standardUserDefaults] objectForKey:@"sliderValue"];
-    self.textSlider.value = sliderValue ? [sliderValue floatValue] : 1.5;
-    self.textSize = [[UIBarButtonItem alloc] initWithTitle:@"aA" style:UIBarButtonItemStylePlain  target:self action:@selector(showToolbar)];
+    self.toolbar.alpha          = 0;
+    self.descriptionView.alpha  = 0;
+    NSNumber *sliderValue       = [[NSUserDefaults standardUserDefaults] objectForKey:@"sliderValue"];
+    self.textSlider.value       = sliderValue ? [sliderValue floatValue] : 1.5;
+    self.textSize               = [[UIBarButtonItem alloc] initWithTitle:@"aA"
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(showToolbar)];
     
     [self.navigationItem setRightBarButtonItems:@[self.shareButton,self.textSize] animated:YES ];
     
@@ -50,28 +52,26 @@ MBProgressHUD *HUD;
 
 -(void)webViewSetup
 {
-    HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES] ;
-    HUD.mode = MBProgressHUDModeIndeterminate;
-	HUD.labelText = @"Завантаження...";
+    HUD                         = [MBProgressHUD showHUDAddedTo:self.view animated:YES] ;
+    HUD.mode                    = MBProgressHUDModeIndeterminate;
+	HUD.labelText               = @"Завантаження...";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSlider)];
-    tap.numberOfTapsRequired = 1;
-    tap.delegate = self;
-    NSString *html          = [NSString stringWithFormat: @"http://pravda.if.ua/print.php?id=%@",
-                               [self searchNewsNumberInLink:[self.rssItem.link absoluteString]]];
-    NSURLRequest *request   = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:html]];
+    tap.numberOfTapsRequired    = 1;
+    tap.delegate                = self;
+    NSString *html              = [NSString stringWithFormat: @"http://pravda.if.ua/print.php?id=%@",
+                                   [self searchNewsNumberInLink:[self.rssItem.link absoluteString]]];
+    NSURLRequest *request       = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:html]];
     [self.descriptionView addGestureRecognizer:tap];
     [self.descriptionView loadRequest:request progress:^(NSUInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite) {
-
     } success:^NSString *(NSHTTPURLResponse *response, NSString *HTML) {
         [HUD hide:YES];
-
         return HTML;
     } failure:^(NSError *error) {
-        HUD.mode = MBProgressHUDModeText;
-        HUD.labelText = [NSString stringWithFormat:@"%@",[error localizedDescription]];
+        HUD.mode        = MBProgressHUDModeText;
+        HUD.labelText   = [NSString stringWithFormat:@"%@",[error localizedDescription]];
     }];
-    self.descriptionView.scrollView.showsVerticalScrollIndicator = NO;
-    self.descriptionView.scrollView.delegate = self;
+    self.descriptionView.scrollView.showsVerticalScrollIndicator    = NO;
+    self.descriptionView.scrollView.delegate                        = self;
 }
 
 -(void)showToolbar
@@ -99,12 +99,11 @@ MBProgressHUD *HUD;
 
 - (IBAction)changeTextSize:(UISlider *)sender
 {
-    NSNumber *textsize = [NSNumber numberWithInt:sender.value * 267];
-    NSNumber *value = @(sender.value);
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *textsize              = @(sender.value * 267);
+    NSNumber *sliderValue           = @(sender.value);
+    NSUserDefaults *userDefaults    = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:textsize forKey:@"textSize"];
-    [userDefaults setObject:value forKey:@"sliderValue"];
+    [userDefaults setObject:sliderValue forKey:@"sliderValue"];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
@@ -154,9 +153,9 @@ MBProgressHUD *HUD;
         textSize = @400;
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-  //  [MBProgressHUD hideHUDForView:self.view animated:YES];
+    //  [MBProgressHUD hideHUDForView:self.view animated:YES];
     NSString *jsBody    = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%d%%'",
-                            [textSize intValue]];
+                           [textSize intValue]];
     NSString *jsTitle   = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('h1')[0].style.webkitTextSizeAdjust= '%d%%'",
                            200];
     [self.descriptionView stringByEvaluatingJavaScriptFromString:jsBody];
@@ -164,7 +163,7 @@ MBProgressHUD *HUD;
     // Disable user selection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     // Disable callout
-  //  [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
+    //  [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
     [UIView animateWithDuration:0.2 animations:^{
         self.descriptionView.alpha = 1;
     }];
@@ -199,8 +198,8 @@ MBProgressHUD *HUD;
     // Create array of MWPhoto objects
     __block NSMutableArray *photos = [NSMutableArray array];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:obj]];
-        photo.caption = [NSString stringWithFormat:@"%@ \n %@",self.rssItem.title,self.rssItem.link];
+        MWPhoto *photo  = [MWPhoto photoWithURL:[NSURL URLWithString:obj]];
+        photo.caption   = [NSString stringWithFormat:@"%@ \n %@",self.rssItem.title,self.rssItem.link];
         [photos addObject:photo];
     }];
     self.photos = photos;

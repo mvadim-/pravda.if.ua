@@ -14,19 +14,20 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
 @implementation API
 
 
--(void)refreshDataFromServerWithCategory:(NSNumber *)cat andOffset:(NSNumber *)offset completionBlock:(void(^)(NSArray *response ,bool succeeded,NSError *error))completionBlock
+-(void)refreshDataFromServerWithCategory:(NSNumber *)cat
+                               andOffset:(NSNumber *)offset
+                         completionBlock:(void(^)(NSArray *response ,bool succeeded,NSError *error))completionBlock
 {
     NSURLRequest *req   = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:[self prepareUrlWithCategory:cat andOffset:offset]]];
     [RSSParser parseRSSFeedForRequest:req success:^(NSArray *feedItems) {
-
         completionBlock(feedItems,YES,nil);
     } failure:^(NSError *error) {
-        
         completionBlock(nil,NO,error);
     }];
 }
 
--(NSString *)prepareUrlWithCategory:(NSNumber *)cat andOffset:(NSNumber *)offset
+-(NSString *)prepareUrlWithCategory:(NSNumber *)cat
+                          andOffset:(NSNumber *)offset
 {
     NSString *URL = news_url;
     if (cat) {

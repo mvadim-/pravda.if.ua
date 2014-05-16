@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, Category) {news,coruption,politics,economic,photo,crime,ecocrime,finance};
+
 @interface MenuTableViewController : UITableViewController
 
 @end

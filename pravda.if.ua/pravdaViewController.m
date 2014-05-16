@@ -22,10 +22,11 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refresh;
-@property (strong, nonatomic)  UIRefreshControl *refreshControl;
-@property (strong, nonatomic)  NSNumber *offset;
-@property (strong, nonatomic) UIActivityIndicatorView *downloadActivityIndicator;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
+
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) NSNumber *offset;
+@property (strong, nonatomic) UIActivityIndicatorView *downloadActivityIndicator;
 
 @end
 
@@ -122,7 +123,8 @@
     if (!self.refreshControl.isRefreshing)
     {
         //Collection view scroll to top
-        if ([self.dataSource count])[self.myCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+        if ([self.dataSource count])[self.myCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]
+                                                                  atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     [self downloadDataWithCompletion:^(bool succeeded)
@@ -133,7 +135,9 @@
 
 -(void)downloadDataWithCompletion:(void(^)(bool succeeded))completion
 {
-    [[API sharedInstance] refreshDataFromServerWithCategory:self.category andOffset:self.offset completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
+    [[API sharedInstance] refreshDataFromServerWithCategory:self.category
+                                                  andOffset:self.offset
+                                            completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
         [self.refreshControl endRefreshing];
         if (succeeded) {
             [[API sharedInstance] setUpdatedInBackground:NO];
@@ -183,7 +187,8 @@
     RSSItem *item               = (self.dataSource)[indexPath.row];
     static NSString *cellIdent  = @"cellid";
     
-    MyCustomCell *cell          = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdent forIndexPath:indexPath];
+    MyCustomCell *cell          = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdent
+                                                                            forIndexPath:indexPath];
     [cell.imageInCell clearImage:defaultImage];
     
     if([item.title length])
@@ -275,8 +280,8 @@
         DetailViewController *detailViewController  = segue.destinationViewController;
         if ([segue.identifier isEqualToString:@"showDetail"])
         {
-            NSIndexPath *selectedIndexPath              = [self.myCollectionView indexPathsForSelectedItems][0];
-            detailViewController.rssItem                = (self.dataSource)[selectedIndexPath.row];
+            NSIndexPath *selectedIndexPath  = [self.myCollectionView indexPathsForSelectedItems][0];
+            detailViewController.rssItem    = (self.dataSource)[selectedIndexPath.row];
         }
     }
 }
