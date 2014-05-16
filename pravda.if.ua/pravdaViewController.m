@@ -180,7 +180,7 @@
 {
     UIImage *defaultImage = [UIImage imageNamed:@"pravda"];
     
-    RSSItem *item               = [self.dataSource objectAtIndex:indexPath.row];
+    RSSItem *item               = (self.dataSource)[indexPath.row];
     static NSString *cellIdent  = @"cellid";
     
     MyCustomCell *cell          = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdent forIndexPath:indexPath];
@@ -230,7 +230,7 @@
 {
     //download nex 20 news
     int offset  = [self.offset intValue];
-    self.offset = [NSNumber numberWithInt:offset+=20];
+    self.offset = @(offset+=20);
     [self.downloadActivityIndicator startAnimating];
     [self downloadDataWithCompletion:^(bool succeeded)  {
         if (succeeded) {
@@ -276,8 +276,8 @@
         DetailViewController *detailViewController  = segue.destinationViewController;
         if ([segue.identifier isEqualToString:@"showDetail"])
         {
-            NSIndexPath *selectedIndexPath              = [[self.myCollectionView indexPathsForSelectedItems] objectAtIndex:0];
-            detailViewController.rssItem                = [self.dataSource objectAtIndex:selectedIndexPath.row];
+            NSIndexPath *selectedIndexPath              = [self.myCollectionView indexPathsForSelectedItems][0];
+            detailViewController.rssItem                = (self.dataSource)[selectedIndexPath.row];
         }
     }
 }

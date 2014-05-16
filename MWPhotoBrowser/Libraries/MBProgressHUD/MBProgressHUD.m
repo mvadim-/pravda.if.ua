@@ -273,7 +273,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 }
 
 - (void)hide:(BOOL)animated afterDelay:(NSTimeInterval)delay {
-	[self performSelector:@selector(hideDelayed:) withObject:[NSNumber numberWithBool:animated] afterDelay:delay];
+	[self performSelector:@selector(hideDelayed:) withObject:@(animated) afterDelay:delay];
 }
 
 - (void)hideDelayed:(NSNumber *)animated {
@@ -663,8 +663,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 }
 
 - (NSArray *)observableKeypaths {
-	return [NSArray arrayWithObjects:@"mode", @"customView", @"labelText", @"labelFont", 
-			@"detailsLabelText", @"detailsLabelFont", @"progress", nil];
+	return @[@"mode", @"customView", @"labelText", @"labelFont", 
+			@"detailsLabelText", @"detailsLabelFont", @"progress"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -847,7 +847,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 }
 
 - (NSArray *)observableKeypaths {
-	return [NSArray arrayWithObjects:@"progressTintColor", @"backgroundTintColor", @"progress", @"annular", nil];
+	return @[@"progressTintColor", @"backgroundTintColor", @"progress", @"annular"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -998,7 +998,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 }
 
 - (NSArray *)observableKeypaths {
-	return [NSArray arrayWithObjects:@"lineColor", @"progressRemainingColor", @"progressColor", @"progress", nil];
+	return @[@"lineColor", @"progressRemainingColor", @"progressColor", @"progress"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

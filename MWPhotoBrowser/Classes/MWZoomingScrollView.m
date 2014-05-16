@@ -184,7 +184,7 @@
 
 - (void)setProgressFromNotification:(NSNotification *)notification {
     NSDictionary *dict = [notification object];
-    id <MWPhoto> photoWithProgress = [dict objectForKey:@"photo"];
+    id <MWPhoto> photoWithProgress = dict[@"photo"];
     if (photoWithProgress == self.photo) {
         float progress = [[dict valueForKey:@"progress"] floatValue];
         _loadingIndicator.progress = MAX(MIN(1, progress), 0);

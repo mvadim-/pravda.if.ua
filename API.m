@@ -43,7 +43,7 @@ static NSString *news_url = @"http://pravda.if.ua/rssiphone.php?";
 -(NSString *)categoryNameWithNumber:(NSNumber *)num
 {
     NSDictionary *catgory = @{@0: @"Новини",@18: @"Корупція",@1: @"Політика",@2: @"Економіка",@15: @"Фоторопортаж",@9: @"Кримінал",@19: @"Екозлочин",@7: @"Інвестиції"};
-    return [catgory objectForKey:num];
+    return catgory[num];
 }
 
 + (id)sharedInstance

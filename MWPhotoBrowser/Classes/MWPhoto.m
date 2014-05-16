@@ -160,9 +160,8 @@
                                                      progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                          if (expectedSize > 0) {
                                                              float progress = receivedSize / (float)expectedSize;
-                                                             NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                   [NSNumber numberWithFloat:progress], @"progress",
-                                                                                   self, @"photo", nil];
+                                                             NSDictionary* dict = @{@"progress": @(progress),
+                                                                                   @"photo": self};
                                                              [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_PROGRESS_NOTIFICATION object:dict];
                                                          }
                                                      }

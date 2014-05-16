@@ -116,7 +116,7 @@
         }
         
         if ([elementName isEqualToString:@"slash:comments"]) {
-            [currentItem setCommentsCount:[NSNumber numberWithInt:[tmpString intValue]]];
+            [currentItem setCommentsCount:@([tmpString intValue])];
         }
         
         if ([elementName isEqualToString:@"pubDate"]) {

@@ -100,7 +100,7 @@ MBProgressHUD *HUD;
 - (IBAction)changeTextSize:(UISlider *)sender
 {
     NSNumber *textsize = [NSNumber numberWithInt:sender.value * 267];
-    NSNumber *value = [NSNumber numberWithFloat:sender.value ];
+    NSNumber *value = @(sender.value);
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:textsize forKey:@"textSize"];
@@ -234,7 +234,7 @@ MBProgressHUD *HUD;
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index
 {
     if (index < self.photos.count)
-        return [self.photos objectAtIndex:index];
+        return (self.photos)[index];
     return nil;
 }
 
@@ -246,7 +246,7 @@ MBProgressHUD *HUD;
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
 {
     if (index < [self.photos count])
-        return [self.photos objectAtIndex:index];
+        return (self.photos)[index];
     return nil;
 }
 
