@@ -56,7 +56,7 @@
     if (!_refreshControl) {
         _refreshControl = [[UIRefreshControl alloc] init];
         [_refreshControl addTarget:self action:@selector(refresh:)
-                      forControlEvents:UIControlEventValueChanged];
+                  forControlEvents:UIControlEventValueChanged];
         _refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Потягніть для оновлення..."];
     }
     return _refreshControl;
@@ -72,7 +72,7 @@
     [self.revealButtonItem setTarget: self.revealViewController];
     [self.revealButtonItem setAction: @selector( revealToggle: )];
     [self.view addGestureRecognizer: self.revealViewController.panGestureRecognizer];
-   
+    
     [self.myCollectionView addSubview:self.refreshControl];
     self.myCollectionView.alwaysBounceVertical = YES;
     [self refresh:nil];
@@ -138,26 +138,26 @@
     [[API sharedInstance] refreshDataFromServerWithCategory:self.category
                                                   andOffset:self.offset
                                             completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
-        [self.refreshControl endRefreshing];
-        if (succeeded) {
-            [[API sharedInstance] setUpdatedInBackground:NO];
-            if (!self.offset){
-                [self.dataSource removeAllObjects];
-            }
-            //reset last background update time
-            [self setTitle:[[API sharedInstance] categoryNameWithNumber:self.category ? self.category :@0]];
-            [self.dataSource addObjectsFromArray: response];
-            [self lastNewsDate:[(RSSItem *)[self.dataSource firstObject] pubDate]];
-            if (!self.offset) {[self.myCollectionView reloadData];}
-            completion(YES);
-        } else{
-            [self setTitle:@"Помилка"];
-            NSString *errorString   = [NSString stringWithFormat:@"%@.\nСпробуйте оновити данні.",[error localizedDescription]];
-            UIAlertView* alert      = [[UIAlertView alloc] initWithTitle:@"Щось трапилось:" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
-            completion(NO);
-        }
-    }];
+                                                [self.refreshControl endRefreshing];
+                                                if (succeeded) {
+                                                    [[API sharedInstance] setUpdatedInBackground:NO];
+                                                    if (!self.offset){
+                                                        [self.dataSource removeAllObjects];
+                                                    }
+                                                    //reset last background update time
+                                                    [self setTitle:[[API sharedInstance] categoryNameWithNumber:self.category ? self.category :@0]];
+                                                    [self.dataSource addObjectsFromArray: response];
+                                                    [self lastNewsDate:[(RSSItem *)[self.dataSource firstObject] pubDate]];
+                                                    if (!self.offset) {[self.myCollectionView reloadData];}
+                                                    completion(YES);
+                                                } else{
+                                                    [self setTitle:@"Помилка"];
+                                                    NSString *errorString   = [NSString stringWithFormat:@"%@.\nСпробуйте оновити данні.",[error localizedDescription]];
+                                                    UIAlertView* alert      = [[UIAlertView alloc] initWithTitle:@"Щось трапилось:" message:errorString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                                                    [alert show];
+                                                    completion(NO);
+                                                }
+                                            }];
 }
 
 -(void)lastNewsDate:(NSDate *)date
@@ -184,7 +184,7 @@
 {
     UIImage *defaultImage = [UIImage imageNamed:@"pravda"];
     
-    RSSItem *item               = (self.dataSource)[indexPath.row];
+    RSSItem *item               = self.dataSource[indexPath.row];
     static NSString *cellIdent  = @"cellid";
     
     MyCustomCell *cell          = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdent
@@ -225,7 +225,7 @@
     //check for last item in collection and insert new value
     if (indexPath.row == ([self.dataSource count]-1))
     {
-        [self performSelectorInBackground:@selector(addMoreNewsAfterLastRowWithIndexPath:) withObject:indexPath];
+        [self performSelector:@selector(addMoreNewsAfterLastRowWithIndexPath:) withObject:indexPath];
     }
     return cell;
 }
@@ -233,26 +233,29 @@
 -(void)addMoreNewsAfterLastRowWithIndexPath:(NSIndexPath *)indexPath
 {
     //download nex 20 news
-    int offset  = [self.offset intValue];
-    self.offset = @(offset+=20);
-    [self.downloadActivityIndicator startAnimating];
-    [self downloadDataWithCompletion:^(bool succeeded)  {
-        if (succeeded) {
-            [self.downloadActivityIndicator stopAnimating];
-            [self.downloadActivityIndicator removeFromSuperview];
-            
-            //update collection view with new news
-            
-            [self.myCollectionView performBatchUpdates:^{
-                NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
-                NSUInteger resultsSize              = [self.dataSource count];
-                NSInteger numberOfNewsInList        = 20;
-                for (int i = resultsSize - numberOfNewsInList; i < resultsSize ; i++){
-                    [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-                }
-                [self.myCollectionView insertItemsAtIndexPaths:arrayWithIndexPaths];
-            } completion:nil];
-        }
+    NSOperationQueue *myQueue = [NSOperationQueue new];
+    [myQueue addOperationWithBlock:^{
+        int offset  = [self.offset intValue];
+        self.offset = @(offset+=20);
+        [self.downloadActivityIndicator startAnimating];
+        [self downloadDataWithCompletion:^(bool succeeded)  {
+            if (succeeded) {
+                [self.downloadActivityIndicator stopAnimating];
+                [self.downloadActivityIndicator removeFromSuperview];
+                //update collection view with new news
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [self.myCollectionView performBatchUpdates:^{
+                        NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
+                        NSUInteger resultsSize              = [self.dataSource count];
+                        NSInteger numberOfNewsInList        = 20;
+                        for (int i = resultsSize - numberOfNewsInList; i < resultsSize ; i++){
+                            [arrayWithIndexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+                        }
+                        [self.myCollectionView insertItemsAtIndexPaths:arrayWithIndexPaths];
+                    } completion:nil];
+                }];
+            }
+        }];
     }];
 }
 

@@ -103,6 +103,8 @@
 		D97235B919019B2600FC1E52 /* cellImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97235B819019B2600FC1E52 /* cellImageView.m */; };
 		D975CC1518F47ABF005879E5 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = D975CC1418F47ABF005879E5 /* API.m */; };
 		D987077B18EA814100B2CC72 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D987077A18EA814100B2CC72 /* QuartzCore.framework */; };
+		D98858C6192FD7FF00F67719 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D98858C5192FD7FF00F67719 /* CoreData.framework */; };
+		D9885914192FDB5300F67719 /* pravdaCD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D9885912192FDB5300F67719 /* pravdaCD.xcdatamodeld */; };
 		D9D4FBD618F181E300F0DE50 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4FBD518F181E300F0DE50 /* SWRevealViewController.m */; };
 		D9D4FBD918F1823600F0DE50 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4FBD818F1823600F0DE50 /* MenuTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -293,6 +295,8 @@
 		D975CC1318F47ABF005879E5 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		D975CC1418F47ABF005879E5 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		D987077A18EA814100B2CC72 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D98858C5192FD7FF00F67719 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D9885913192FDB5300F67719 /* pravdaCD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pravdaCD.xcdatamodel; sourceTree = "<group>"; };
 		D9D4FBD418F181E300F0DE50 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		D9D4FBD518F181E300F0DE50 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		D9D4FBD718F1823600F0DE50 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D98858C6192FD7FF00F67719 /* CoreData.framework in Frameworks */,
 				D950474818F01D7900F280F7 /* MapKit.framework in Frameworks */,
 				D950461A18F0188200F280F7 /* ImageIO.framework in Frameworks */,
 				D950461818F0187900F280F7 /* AssetsLibrary.framework in Frameworks */,
@@ -360,6 +365,7 @@
 		B765D523172E5C0A00973238 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D98858C5192FD7FF00F67719 /* CoreData.framework */,
 				D950474718F01D7900F280F7 /* MapKit.framework */,
 				D95046B818F01D5400F280F7 /* MWPhotoBrowser */,
 				D950461918F0188200F280F7 /* ImageIO.framework */,
@@ -399,6 +405,7 @@
 				B765D53C172E5C0A00973238 /* MainStoryboard.storyboard */,
 				B765D533172E5C0A00973238 /* pravdaAppDelegate.h */,
 				B765D534172E5C0A00973238 /* pravdaAppDelegate.m */,
+				D9885912192FDB5300F67719 /* pravdaCD.xcdatamodeld */,
 				B765D52C172E5C0A00973238 /* pravda.if.ua-Info.plist */,
 				B765D52D172E5C0A00973238 /* InfoPlist.strings */,
 				B765D530172E5C0A00973238 /* main.m */,
@@ -845,6 +852,7 @@
 				B765D531172E5C0A00973238 /* main.m in Sources */,
 				D9150B1F18EFE57C00855BC0 /* UIAlertView+AFNetworking.m in Sources */,
 				D9150B1518EFE57C00855BC0 /* AFHTTPRequestOperationManager.m in Sources */,
+				D9885914192FDB5300F67719 /* pravdaCD.xcdatamodeld in Sources */,
 				B765D535172E5C0A00973238 /* pravdaAppDelegate.m in Sources */,
 				D950473018F01D5400F280F7 /* PSTGridLayoutRow.m in Sources */,
 				D950471C18F01D5400F280F7 /* MWGridViewController.m in Sources */,
@@ -1047,6 +1055,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D9885912192FDB5300F67719 /* pravdaCD.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D9885913192FDB5300F67719 /* pravdaCD.xcdatamodel */,
+			);
+			currentVersion = D9885913192FDB5300F67719 /* pravdaCD.xcdatamodel */;
+			path = pravdaCD.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B765D519172E5C0A00973238 /* Project object */;
 }

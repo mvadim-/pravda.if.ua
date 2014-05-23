@@ -15,5 +15,5 @@
     #import <MobileCoreServices/MobileCoreServices.h>
     #import <Security/Security.h>
     #import "SWRevealViewController.h"
-
+    #import <CoreData/CoreData.h>
 #endif
