@@ -8,9 +8,6 @@
 
 #import "MyCustomCell.h"
 #import <QuartzCore/QuartzCore.h>
-@interface MyCustomCell()
-
-@end
 
 @implementation MyCustomCell
 

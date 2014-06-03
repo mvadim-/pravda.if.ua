@@ -26,20 +26,22 @@
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
+    __block UIBackgroundFetchResult fetchResult = UIBackgroundFetchResultNoData;
+    if ([UIApplication sharedApplication].applicationIconBadgeNumber == 0) {
         [[API sharedInstance] refreshDataFromServerWithCategory:nil andOffset:nil completionBlock:^(NSArray *response, bool succeeded, NSError *error) {
-            UIBackgroundFetchResult fetchResult;
             if (succeeded) {
                 NSDate *lastUpdateSavedTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastUpdateTime"];
                 NSDate *lastUpdateTime = [(RSSItem *)[response firstObject] pubDate];
                 if ([lastUpdateSavedTime compare: lastUpdateTime] != NSOrderedSame) {
-                   // NSLog(@"Application updated in background");
+                    // NSLog(@"Application updated in background");
                     [[API sharedInstance] setUpdatedInBackground:YES];
                     [UIApplication sharedApplication].applicationIconBadgeNumber = 1;
                     fetchResult = UIBackgroundFetchResultNewData;
-                } else fetchResult = UIBackgroundFetchResultNoData;
+                }
             }else fetchResult = UIBackgroundFetchResultFailed;
-            completionHandler(fetchResult);
         }];
+    }
+    completionHandler(fetchResult);
 }
 
 -(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions

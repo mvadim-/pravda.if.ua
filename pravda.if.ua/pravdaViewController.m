@@ -214,9 +214,7 @@
         [cell.imageInCell setImageWithURLRequest:request
                                 placeholderImage:nil
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                             if (request == nil && response == nil) {
-                                                 [cell.imageInCell setEventImage:image animated:NO];
-                                             } else [cell.imageInCell setEventImage:image animated:YES];
+                                             [cell.imageInCell setEventImage:image animated:(BOOL)response];
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                                              [cell.imageInCell setEventImage:defaultImage animated:NO];
                                          }];
